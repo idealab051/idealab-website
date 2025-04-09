@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ideaLAB traveltours - Vaša putovanja, naša inspiracija</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 82, 147, 0.7), rgba(0, 82, 147, 0.7)), url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 80vh;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        
+        .destination-filter button.active {
+            background-color: #005293;
+            color: white;
+        }
+        
+        .mobile-menu {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#" class="text-2xl font-bold text-blue-800 flex items-center">
+                    <div class="mr-2">
+                        <i class="fas fa-plane text-blue-600"></i>
+                    </div>
+                    ideaLAB traveltours
+                </a>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-blue-800 font-medium hover:text-blue-600 transition">Naslovnica</a>
+                <a href="#putovanja" class="text-gray-700 hover:text-blue-600 transition">Putovanja</a>
+                <a href="#o-nama" class="text-gray-700 hover:text-blue-600 transition">O nama</a>
+                <a href="#blog" class="text-gray-700 hover:text-blue-600 transition">Blog</a>
+                <a href="#kontakt" class="text-gray-700 hover:text-blue-600 transition">Kontakt</a>
+            </nav>
+            
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition">
+                    Rezerviraj
+                </a>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu hidden md:hidden bg-white w-full absolute left-0 px-4 pb-4 shadow-lg">
+            <div class="flex flex-col space-y-3">
+                <a href="#" class="text-blue-800 font-medium py-2 border-b">Naslovnica</a>
+                <a href="#putovanja" class="text-gray-700 py-2 border-b">Putovanja</a>
+                <a href="#o-nama" class="text-gray-700 py-2 border-b">O nama</a>
+                <a href="#blog" class="text-gray-700 py-2 border-b">Blog</a>
+                <a href="#kontakt" class="text-gray-700 py-2 border-b">Kontakt</a>
+                <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-center mt-2">
+                    Rezerviraj
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero flex items-center justify-center text-center text-white">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Vaša putovanja, naša inspiracija</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Otkrijte svijet s ideaLAB traveltours - vašim pouzdanim vodičem kroz nezaboravna iskustva</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#putovanja" class="bg-white text-blue-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">Istraži ponude</a>
+                <a href="#kontakt" class="border-2 border-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-blue-800 transition">Kontaktirajte nas</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Zašto putovati s nama?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Sa sjedištem u srcu Rijeke, <span class="text-blue-600 font-medium">ideaLAB traveltours</span> donosi vam najbolje turističke doživljaje već više od 15 godina.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg text-center border-t-4 border-blue-600">
+                    <div class="text-blue-600 text-4xl mb-4">
+                        <i class="fas fa-globe-europe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Širok izbor destinacija</h3>
+                    <p class="text-gray-600">Od mediteranskih bisera do europskih metropola, nudimo pažljivo odabrane programe za svačiji ukus.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg text-center border-t-4 border-blue-600">
+                    <div class="text-blue-600 text-4xl mb-4">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Osobni pristup</h3>
+                    <p class="text-gray-600">Svakom klijentu pristupamo individualno, osiguravajući da vaše putovanje bude savršeno prilagođeno vašim željama.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg text-center border-t-4 border-blue-600">
+                    <div class="text-blue-600 text-4xl mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Sigurnost i pouzdanost</h3>
+                    <p class="text-gray-600">Partneri su nam renomirani hotelski lanci i prijevoznici, a sve usluge su osigurane i provjerene.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Offers -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Izdvojene ponude</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Otkrijte naše najpopularnije aranžmane ove sezone</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Offer 1 -->
+                <div class="offer-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Dubrovnik" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Hrvatska
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Romantični Dubrovnik</h3>
+                        <p class="text-gray-600 mb-4">5 dana / 4 noći u luksuznom hotelu s pogledom na staru gradsku jezgru</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-blue-600">od 470 €</span>
+                            <a href="#" class="text-blue-800 font-medium hover:text-blue-600 flex items-center">
+                                Detalji <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Offer 2 -->
+                <div class="offer-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1543785734-4b6e56464261?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Madrid" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Europa
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Madrid u proljeće</h3>
+                        <p class="text-gray-600 mb-4">4 dana / 3 noći u srcu grada s obilaskom svih glavnih znamenitosti</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-blue-600">od 810 €</span>
+                            <a href="#" class="text-blue-800 font-medium hover:text-blue-600 flex items-center">
+                                Detalji <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Offer 3 -->
+                <div class="offer-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Beč" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Advent
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Bečki advent</h3>
+                        <p class="text-gray-600 mb-4">3 dana / 2 noći s posjetom adventnim sajmima</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-blue-600">od 440 €</span>
+                            <a href="#" class="text-blue-800 font-medium hover:text-blue-600 flex items-center">
+                                Detalji <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#putovanja" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
+                    Pogledajte sve ponude
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="putovanja" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Naša putovanja</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Pronađite savršeno putovanje za vas</p>
+            </div>
+            
+            <!-- Destination Filters -->
+            <div class="destination-filter flex flex-wrap justify-center gap-2 mb-8">
+                <button class="filter-btn px-4 py-2 rounded-full border border-blue-800 text-blue-800 hover:bg-blue-50 transition active" data-filter="all">Sve</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-blue-800 text-blue-800 hover:bg-blue-50 transition" data-filter="europa">Europska putovanja</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-blue-800 text-blue-800 hover:bg-blue-50 transition" data-filter="hrvatska">Hrvatska</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-blue-800 text-blue-800 hover:bg-blue-50 transition" data-filter="advent">Advent</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-blue-800 text-blue-800 hover:bg-blue-50 transition" data-filter="citybreak">City break</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-blue-800 text-blue-800 hover:bg-blue-50 transition" data-filter="tematske">Tematske ture</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-blue-800 text-blue-800 hover:bg-blue-50 transition" data-filter="daleka">Daleka putovanja</button>
+            </div>
+            
+            <!-- Destination Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Destination 1 -->
+                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md hrvatska" data-category="hrvatska">
+                    <img src="https://images.unsplash.com/photo-1562504208-03d85fc8d23e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Plitvička jezera" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold">Plitvička jezera</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Hrvatska</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">2 dana / 1 noć s vodičem i obilaskom parka</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-600 font-bold">od 175 €</span>
+                            <a href="#" class="text-blue-800 hover:text-blue-600">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destination 2 -->
+                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md europa" data-category="europa">
+                    <img src="https://images.unsplash.com/photo-1543785734-4b6e56464261?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Madrid" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold">Madrid - španjolska prijestolnica</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Europa</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">5 dana / 4 noći s obilaskom glavnih znamenitosti</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-600 font-bold">od 620 €</span>
+                            <a href="#" class="text-blue-800 hover:text-blue-600">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destination 3 -->
+                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md advent" data-category="advent">
+                    <img src="https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Beč" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold">Bečki advent</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Advent</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">3 dana / 2 noći s posjetom adventnim sajmima</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-600 font-bold">od 440 €</span>
+                            <a href="#" class="text-blue-800 hover:text-blue-600">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destination 4 -->
+                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md citybreak" data-category="citybreak">
+                    <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1592&q=80" alt="Barcelona" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold">Barcelona vikend</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">City break</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">3 dana / 2 noći s obilaskom Sagrade Famílie</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-600 font-bold">od 520 €</span>
+                            <a href="#" class="text-blue-800 hover:text-blue-600">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destination 5 -->
+                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md tematske" data-category="tematske">
+                    <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80" alt="Vinarije" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold">Vinska tura Istre</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Tematske ture</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">1-dnevna tura najboljim vinarijama Istre s degustacijom</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-600 font-bold">od 80 €</span>
+                            <a href="#" class="text-blue-800 hover:text-blue-600">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destination 6 -->
+                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md europa" data-category="europa">
+                    <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Grčka" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold">Grčki otoci</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Europa</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">7 dana / 6 noći na Santoriniju i Mikonosu</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-600 font-bold">od 870 €</span>
+                            <a href="#" class="text-blue-800 hover:text-blue-600">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destination 7 -->
+                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md hrvatska" data-category="hrvatska">
+                    <img src="https://images.unsplash.com/photo-1564502335391-396588e595b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Zadar" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold">Zadar i Kornati</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Hrvatska</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">4 dana / 3 noći s izletom brodom na Kornate</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-600 font-bold">od 375 €</span>
+                            <a href="#" class="text-blue-800 hover:text-blue-600">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destination 8 -->
+                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md daleka" data-category="daleka">
+                    <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Bali" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold">Egzotični Bali</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Daleka putovanja</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">10 dana / 9 noći u raju na zemlji</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-600 font-bold">od 1.490 €</span>
+                            <a href="#" class="text-blue-800 hover:text-blue-600">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
+                    Učitaj još ponuda
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="o-nama" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1556760544-74068565f05c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="ideaLAB traveltours tim" class="rounded-lg shadow-lg w-full">
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-6">O nama</h2>
+                    <p class="text-gray-600 mb-4">ideaLAB traveltours je turistička agencija iz Rijeke s više od 15 godina iskustva u organizaciji putovanja. Naša strast je stvaranje jedinstvenih putničkih iskustva koja ostavljaju trajne uspomene.</p>
+                    <p class="text-gray-600 mb-6">Naš tim stručnjaka posvećen je pronalaženju najboljih rješenja za vaše putovanje, bilo da se radi o romantičnom bijegu za dvoje, obiteljskom odmoru ili poslovnom putovanju.</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="text-blue-600 mr-4 mt-1">
+                                <i class="fas fa-check-circle text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Licencirani turistički vodiči</h4>
+                                <p class="text-gray-600 text-sm">Naši vodiči su stručnjaci za svaku destinaciju</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-blue-600 mr-4 mt-1">
+                                <i class="fas fa-check-circle text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Personalizirani programi</h4>
+                                <p class="text-gray-600 text-sm">Prilagođavamo putovanje vašim željama</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-blue-600 mr-4 mt-1">
+                                <i class="fas fa-check-circle text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">24/7 podrška</h4>
+                                <p class="text-gray-600 text-sm">Uvijek smo dostupni za pomoć tijekom putovanja</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-blue-600 mr-4 mt-1">
+                                <i class="fas fa-check-circle text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Pouzdani partneri</h4>
+                                <p class="text-gray-600 text-sm">Surađujemo samo s provjerenim pružateljima usluga</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#kontakt" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
+                        Kontaktirajte nas
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Iskustva naših putnika</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Pročitajte što kažu naši klijenti o putovanjima s nama</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Ana K." class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Ana K.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Putovanje u Madrid organizirano od strane ideaLAB traveltours bilo je savršeno. Sve je bilo besprijekorno organizirano, od smještaja do obilaska znamenitosti. Posebno zahvaljujemo našem vodiču Mariji na izvrsnim preporukama za restorane!"</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Ivan P." class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Ivan P.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Kao česta putnika, mogu reći da je ideaLAB traveltours jedna od najboljih agencija s kojima sam surađivao. Njihov osobni pristup i pažnja prema detaljima čine razliku. Advent u Beču bio je nezaboravan iskustvo za cijelu obitelj."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Maja L." class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Maja L.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Vinska tura Istre bila je odlično iskustvo. ideaLAB traveltours je organizirao posjet najboljim vinarijama s izvrsnim vodičem koji nam je pružio dubinski uvid u istarsku vinsku kulturu. Svakako preporučujem njihove tematske ture!"</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center text-blue-800 font-medium hover:text-blue-600">
+                    <i class="fab fa-facebook-f mr-2"></i> Pogledajte još recenzija na Facebooku
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Blog & Novosti</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Savjeti, inspiracije and vijesti iz svijeta putovanja</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Putnički savjeti" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>15. lipnja 2023.</span>
+                            <span class="mx-2">•</span>
+                            <span>Savjeti</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">10 najboljih savjeta za putovanje s djecom</h3>
+                        <p class="text-gray-600 mb-4">Kako organizirati putovanje koje će uživati cijela obitelj? Pročitajte naše provjerene savjete za bezbrižno putovanje s najmlađima.</p>
+                        <a href="#" class="text-blue-800 font-medium hover:text-blue-600 flex items-center">
+                            Pročitaj više <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1496442226666-8d1883a49dec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Destinacija mjeseca" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>5. lipnja 2023.</span>
+                            <span class="mx-2">•</span>
+                            <span>Destinacije</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Santorini - grčki biser u Egejskom moru</h3>
+                        <p class="text-gray-600 mb-4">Otkrijte što čini Santorini jednom od najromantičnijih destinacija na svijetu. Naš vodič kroz najljepše plaže, restorane i znamenitosti.</p>
+                        <a href="#" class="text-blue-800 font-medium hover:text-blue-600 flex items-center">
+                            Pročitaj više <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Trendovi u putovanjima" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>25. svibnja 2023.</span>
+                            <span class="mx-2">•</span>
+                            <span>Trendovi</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Turistički trendovi za 2023. godinu</h3>
+                        <p class="text-gray-600 mb-4">Koje su destinacije u trendu ove godine? Otkrijte najnovije smjernice u svijetu putovanja i inspirirajte se za svoje sljedeće putovanje.</p>
+                        <a href="#" class="text-blue-800 font-medium hover:text-blue-600 flex items-center">
+                            Pročitaj više <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
+                    Pogledajte sve članke
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-blue-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Budite u toku s našim ponudama</h2>
+                <p class="text-blue-100 mb-8">Prijavite se na naš newsletter i budite prvi koji će saznati za naše ekskluzivne ponude, popuste i novosti.</p>
+                
+                <form class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+                    <input type="email" placeholder="Vaša e-mail adresa" class="flex-grow px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition whitespace-nowrap">
+                        Prijavi se
+                    </button>
+                </form>
+                
+                <p class="text-sm text-blue-200 mt-4">Vašu e-mail adresu koristit ćemo isključivo za slanje newslettera. Možete se odjaviti u bilo kojem trenutku.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontakt" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Kontaktirajte nas</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Imate pitanja ili želite rezervirati putovanje? Javite nam se!</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-6">Pošaljite nam poruku</h3>
+                        
+                        <form>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="name" class="block text-gray-700 mb-2">Ime i prezime*</label>
+                                    <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-gray-700 mb-2">E-mail adresa*</label>
+                                    <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="phone" class="block text-gray-700 mb-2">Broj telefona</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="subject" class="block text-gray-700 mb-2">Tema poruke*</label>
+                                <select id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" required>
+                                    <option value="">Odaberite temu</option>
+                                    <option value="upit">Upit o putovanju</option>
+                                    <option value="rezervacija">Rezervacija putovanja</option>
+                                    <option value="grupe">Grupni aranžmani</option>
+                                    <option value="ostalo">Ostalo</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 mb-2">Poruka*</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
+                                Pošalji poruku
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md h-full">
+                        <h3 class="text-xl font-bold mb-6">Kontakt podaci</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="text-blue-600 text-xl mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Adresa</h4>
+                                    <p class="text-gray-600">Dubrovačka 1, 51000 Rijeka, Hrvatska</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-blue-600 text-xl mr-4 mt-1">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Telefon</h4>
+                                    <p class="text-gray-600">+385 51 123 456</p>
+                                    <p class="text-gray-600">+385 91 5061 623 (WhatsApp)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-blue-600 text-xl mr-4 mt-1">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">E-mail</h4>
+                                    <p class="text-gray-600">info@idealab-travel.hr</p>
+                                    <p class="text-gray-600">rezervacije@idealab-travel.hr</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-blue-600 text-xl mr-4 mt-1">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Radno vrijeme</h4>
+                                    <p class="text-gray-600">Pon-pet: 08:00 - 16:00</p>
+                                    <p class="text-gray-600">Sub: 09:00 - 12:00</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold mb-4">Pratite nas</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+                                    <i class="fab fa-tiktok"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Map -->
+            <div class="mt-12 rounded-lg overflow-hidden shadow-md">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2808.715600183111!2d14.44094431555345!3d45.32725397909955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4764a3a1e1d5b7c9%3A0x9c9e9a9a9a9a9a9a!2sKorzo%2C%2051000%2C%20Rijeka!5e0!3m2!1sen!2shr!4v1620000000000!5m2!1sen!2shr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <div class="mr-2">
+                            <i class="fas fa-plane text-blue-400"></i>
+                        </div>
+                        ideaLAB traveltours
+                    </h3>
+                    <p class="text-gray-400 mb-4">Vaša putovanja, naša inspiracija. Organizacija putovanja u Hrvatsku i inozemstvo već više od 15 godina.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Brzi linkovi</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Naslovnica</a></li>
+                        <li><a href="#putovanja" class="text-gray-400 hover:text-blue-400 transition">Putovanja</a></li>
+                        <li><a href="#o-nama" class="text-gray-400 hover:text-blue-400 transition">O nama</a></li>
+                        <li><a href="#blog" class="text-gray-400 hover:text-blue-400 transition">Blog</a></li>
+                        <li><a href="#kontakt" class="text-gray-400 hover:text-blue-400 transition">Kontakt</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Kategorije putovanja</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Europska putovanja</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Hrvatska</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Advent</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">City break</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Daleka putovanja</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Kontaktirajte nas</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mr-2 mt-1"></i>
+                            <span>Dubrovačka 1, 51000 Rijeka</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-blue-400 mr-2"></i>
+                            <span>+385 91 5061 623</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 mr-2"></i>
+                            <span>info@idealab-travel.hr</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 ideaLAB traveltours. Sva prava pridržana.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-blue-400 text-sm transition">Uvjeti korištenja</a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 text-sm transition">Politika privatnosti</a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 text-sm transition">Pravne napomene</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Destination filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const destinationItems = document.querySelectorAll('.destination-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                destinationItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=idealab051/idealab-space" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>

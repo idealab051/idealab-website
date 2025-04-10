@@ -605,12 +605,15 @@
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Budite upoznati s našim ponudama</h2>
                 <p class="text-blue-100 mb-8">Prijavite se na naš newsletter i budite prvi koji će saznati za naše ekskluzivne ponude, popuste i novosti.</p>
                 
-                <form class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
-                    <input type="email" placeholder="Vaša e-mail adresa" class="flex-grow px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                    <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition whitespace-nowrap">
-                        Prijavi se
-                    </button>
-                </form>
+<form action="https://formspree.io/f/moveypzr" method="POST" class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+    <input type="email" name="email" placeholder="Vaša e-mail adresa" class="flex-grow px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400" required>
+    <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition whitespace-nowrap">
+        Prijavi se
+    </button>
+    <input type="hidden" name="_subject" value="Nova prijava na newsletter - ideaLAB travel&tours">
+    <input type="hidden" name="_next" value="https://idealab.hr/#newsletter?submitted=true">
+    <input type="hidden" name="_language" value="hr">
+</form>
                 
                 <p class="text-sm text-blue-200 mt-4">Vašu e-mail adresu koristit ćemo isključivo za slanje newslettera. Možete se odjaviti u bilo kojem trenutku.</p>
             </div>

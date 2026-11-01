@@ -17,7 +17,7 @@ content:
   - name: putovanja
     label: Putovanja – slike, tekst i PDF
     type: file
-    path: data/putovanja.json
+    path: putovanja.json
     format: json
     list: true
     operations:

@@ -1,64 +1,27 @@
-IDEALAB – PONUDA PUTOVANJA BEZ UREĐIVANJA KODA
-================================================
+IDEALAB – PROBNA GRANA: UREĐIVANJE PUTOVANJA
+===========================================
 
-OVO JE PRIPREMLJENA PROBNA VERZIJA, NIJE OBJAVLJENA NA idealab.hr.
-Zadržali smo postojeći izgled weba i njegove ostale dijelove.
+Ovo je TESTNA verzija. NEMOJ spajati granu probno-uredjivanje s granom main dok ne provjerimo prikaz i aktualnost ponuda.
 
-ŠTO JE PROMIJENJENO
-- Ponude se više ne uređuju na dva različita mjesta u index.html.
-- Podaci su na jednom mjestu: data/putovanja.json.
-- Izdvojene ponude i Naša putovanja automatski prikazuju iste informacije.
-- Dulji opis se vizualno skrati na tri retka i ne pomiče gumbe.
-- Ako postoji PDF, vidi se gumb 'PDF program'. Ako ne postoji,
-  gumb vodi na kontakt umjesto na pogrešan letak.
-- Ponuda se može sakriti bez brisanja.
+VAŽNO: Za ovu jednostavnu verziju sve nove datoteke nalaze se U KORIJENU repozitorija.
 
-VAŽNO – PRIJE OBJAVE
-- Cijene i opisi su preuzeti s TRENUTNE stare stranice i možda nisu ažurni.
-  Posebno provjeri Ljeto u NYC, Japan, Barcelonu, Maltu i Rijeka Food Tour.
-- London je u starom HTML-u imao dvije cijene (440 € i 780 €).
-  U probni JSON prenesena je cijena 780 €. POTVRDI je prije objave.
-- Stare poveznice NYC/London na PDF Malte iz 2025. NISU prenesene.
-  Ako je PDF za neko putovanje spreman, učitaj ga preko CMS-a.
-- Na ostalim dijelovima stare stranice postoje neaktivne poveznice i
-  generički sadržaji. Ovaj prvi zahvat bavi se isključivo ponudama.
-- Provjeri sadržaj s pravnom i marketinškom točnošću prije objave.
+Glavne datoteke:
+- index.html      – postojeća stranica, povezana s novim podacima
+- putovanja.json  – naslov, slika, opis, termin, cijena, PDF, vidljivost
+- putovanja.js    – automatski izrada kartica na webu
+- .pages.yml      – postavke Pages CMS-a za jednostavno uređivanje
 
-KAKO ĆEŠ UREĐIVATI NAKON JEDNOKRATNOG POSTAVLJANJA
-1) Otvori https://app.pagescms.org/
-2) Prijavi se SVOJIM GitHub računom koji ima pravo uređivati repozitorij.
-3) Odobri Pages CMS-u pristup SAMO repozitoriju idealab-website.
-4) Otvori idealab051 / idealab-website, grana main.
-5) Otvori 'Putovanja – slike, tekst i PDF'.
-6) Uredi naslov/opis/termin/cijenu ili klikni za fotografiju i PDF.
-7) Isključi 'Prikaži putovanje' ako ne želiš da se vidi.
-8) Spremi – Pages CMS promjene upisuje na GitHub.
-   Ako idealab.hr zaista koristi tu granu u GitHub Pages hostingu,
-   nakon objave promjene se pojavljuju na webu (moguća kratka odgoda).
+Postojeće mape images/ i putovanja/ ostaju NETAKNUTE.
 
-PAŽNJA: Pages CMS pristup zahtijeva AUTORIZACIJU TVOG GITHUB RAČUNA,
-NE CHATGPT RAČUNA NORVEŠKOG PRIJATELJA. Ako Github nemaš pod svojom
-kontrolom, najprije treba riješiti vlasništvo/pristup repozitoriju.
+KAKO SE UREĐUJE KADA RJEŠENJE BUDE TESTIRANO I OBJAVLJENO:
+1. Otvori https://app.pagescms.org i autoriziraj SVOJ GitHub račun.
+2. Otvori repozitorij idealab051/idealab-website.
+3. Na stranici Putovanja uređuj naslov, opis, termin, cijenu, fotografiju ili PDF.
+4. Spremanje mijenja putovanja.json u GitHubu, bez diranja HTML-a.
 
-KAKO PRVO SIGURNO OBJAVITI
-A) Sačuvaj originalni ZIP koji si poslala. Nemoj ništa brisati.
-B) Idealno prvo isprobaj ovaj ZIP u zasebnom TESTNOM repozitoriju
-   i otvori pregled stranice prije promjene aktivnog weba.
-C) Pri objavi prenesi čitav sadržaj ove mape, uključujući datoteke
-   koje počinju točkom (.pages.yml) te mape data/ i js/.
-D) Ne prenositi samo data/putovanja.json na staru stranicu:
-   novi index.html i js/putovanja.js moraju biti objavljeni zajedno.
+NAPOMENA: Neke stare cijene, datumi i ponude još nisu provjereni. Nije za objavu uživo bez provjere.
 
-KAKO LOKALNO PROVJERITI U RAČUNALU
-U mapi stranice pokreni lokalni HTTP poslužitelj (potrebna je instalacija
-Pythona, ako ga imaš): python -m http.server 8000
-Otvori http://localhost:8000 (nemoj index.html otvarati direktno kao file:,
-jer preglednici često zabranjuju čitanje JSON-a s diska).
-
-Datoteke koje su dodane:
-.pages.yml           – postavke jednostavnog CMS uređivača
-/data/putovanja.json – svi podaci o putovanjima na jednom mjestu
-/js/putovanja.js    – automatski prikaz kartica na webu
-
-ZA DALJE: nakon prve provjere možemo urediti i ostatak stranice,
-ali nije nužno za ovaj početni problem.
+STRANICA U PROBNOJ GRANI:
+- Ne trebaš brisati ni premještati stare fotografije ili PDF letke.
+- Proba ne mijenja automatski aktivni idealab.hr ako GitHub Pages objavljuje samo main.
+- Nikad ne prebacivati na main bez provjere.

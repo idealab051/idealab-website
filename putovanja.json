@@ -1,11 +1,9 @@
 [
   {
-    "naslov": "Ljeto u NYC",
+    "naslov": "TEST - Ljeto u NYC",
     "opis": "8 dana / 6 noći eduTRAVEL program u Velikoj Jabuci s vodičem za kraj školskih praznika",
-    "termin": "",
     "cijena": "od 1.790 €",
     "slika": "/images/nyc.jpg",
-    "pdf": "",
     "kategorija": "daleka",
     "izdvojeno": true,
     "vidljivo": true
@@ -13,7 +11,6 @@
   {
     "naslov": "Madrid – kraljevski grad",
     "opis": "4 dana / 3 noći u srcu grada s obilaskom glavnih znamenitosti",
-    "termin": "",
     "cijena": "od 790 €",
     "slika": "/images/madrid_kraljevski_grad.jpeg",
     "pdf": "/putovanja/madrid-2026.pdf",
@@ -24,10 +21,8 @@
   {
     "naslov": "Advent u Londonu",
     "opis": "4 dana / 3 noći s posjetom adventskim sajmovima",
-    "termin": "",
     "cijena": "od 780 €",
     "slika": "/images/advent_london.jpg",
-    "pdf": "",
     "kategorija": "advent",
     "izdvojeno": true,
     "vidljivo": true
@@ -35,10 +30,8 @@
   {
     "naslov": "Rijeka Food Tour",
     "opis": "1 dan s vodičem po tipičnim riječkim gourmet lokacijama",
-    "termin": "",
     "cijena": "od 90 €",
     "slika": "/images/rijeka_food.jpg",
-    "pdf": "",
     "kategorija": "hrvatska",
     "izdvojeno": false,
     "vidljivo": true
@@ -46,10 +39,8 @@
   {
     "naslov": "Barcelona vikend",
     "opis": "3 dana / 2 noći s obilaskom Sagrade Famílie",
-    "termin": "",
     "cijena": "od 520 €",
     "slika": "/images/barcelona_photo.jpg",
-    "pdf": "",
     "kategorija": "citybreak",
     "izdvojeno": false,
     "vidljivo": true
@@ -57,10 +48,8 @@
   {
     "naslov": "Vinska tura Istre",
     "opis": "1-dnevna tura najboljim vinarijama Istre s degustacijom",
-    "termin": "",
     "cijena": "od 80 €",
     "slika": "/images/istria_winery.jpg",
-    "pdf": "",
     "kategorija": "tematske",
     "izdvojeno": false,
     "vidljivo": true
@@ -68,10 +57,8 @@
   {
     "naslov": "Malta – otok sunca",
     "opis": "5 dana / 4 noći s vodičem i obilaskom Vallette i otoka",
-    "termin": "",
     "cijena": "od 850 €",
     "slika": "/images/malta_otok_sunca.jpg",
-    "pdf": "",
     "kategorija": "europa",
     "izdvojeno": false,
     "vidljivo": true
@@ -79,10 +66,8 @@
   {
     "naslov": "Daleki Japan",
     "opis": "12 dana / 10 noći u zemlji izlazećeg sunca",
-    "termin": "",
     "cijena": "od 1.990 €",
     "slika": "/images/daleki_japan.jpeg",
-    "pdf": "",
     "kategorija": "daleka",
     "izdvojeno": false,
     "vidljivo": true

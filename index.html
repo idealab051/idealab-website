@@ -44,6 +44,15 @@
         .mobile-menu {
             transition: all 0.3s ease;
         }
+        /* Dulji naslovi i opisi ne šire kartice niti pomiču gumbe. */
+        .idealab-card {display:flex; flex-direction:column; height:100%; min-width:0;}
+        .idealab-card-body {display:flex; flex:1; flex-direction:column; min-width:0;}
+        .idealab-card-title {overflow-wrap:anywhere;}
+        .idealab-card-desc {display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3;
+            line-clamp:3; overflow:hidden; overflow-wrap:anywhere;}
+        .idealab-card-actions {margin-top:auto; padding-top:1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;}
+        .idealab-card-actions a {white-space:nowrap;}
+
     </style>
 </head>
 <body class="bg-gray-50">
@@ -68,7 +77,7 @@
             </nav>
             
             <div class="hidden md:flex items-center space-x-4">
-                <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition">
+                <a href="#kontakt" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition">
                     Rezerviraj
                 </a>
             </div>
@@ -86,7 +95,7 @@
                 <a href="#o-nama" class="text-gray-700 py-2 border-b">O nama</a>
                 <a href="#blog" class="text-gray-700 py-2 border-b">Blog</a>
                 <a href="#kontakt" class="text-gray-700 py-2 border-b">Kontakt</a>
-                <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-center mt-2">
+                <a href="#kontakt" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-center mt-2">
                     Rezerviraj
                 </a>
             </div>
@@ -142,83 +151,19 @@
     </section>
 
     <!-- Featured Offers -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Izdvojene ponude</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Otkrijte naše najpopularnije aranžmane ove sezone</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Offer 1 -->
-<!-- Ljeto u NYC -->
-<div class="offer-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
-    <div class="relative">
-        <img src="https://raw.githubusercontent.com/idealab051/idealab-website/main/images/nyc.jpg" alt="Malta" class="w-full h-64 object-cover">
-        <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-            Daleka putovanja
+    <section class="py-16 bg-gray-50" aria-labelledby="istaknuta-ponuda-naslov">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 id="istaknuta-ponuda-naslov" class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Izdvojene ponude</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">Pogledajte naša aktualna putovanja</p>
         </div>
-    </div>
-    <div class="p-6">
-        <h3 class="text-xl font-bold mb-2">Ljeto u NYC</h3>
-        <p class="text-gray-600 mb-4">8 dana / 6 noći eduTRAVEL program u Velikoj Jabuci s vodičem za kraj školskih praznika</p>
-        <div class="flex justify-between items-center">
-            <span class="text-2xl font-bold text-blue-600">od 1.790 €</span>
-<a href="https://raw.githubusercontent.com/idealab051/idealab-website/main/putovanja/letak-Malta-ljetna-2025.pdf" target="_blank" class="text-blue-800 font-medium hover:text-blue-600 flex items-center">
-    Detalji <i class="fas fa-arrow-right ml-2"></i>
-</a>
+        <div id="izdvojene-ponude" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" aria-live="polite">
+          <p class="text-gray-600">Učitavanje ponuda…</p>
         </div>
-    </div>
-</div>
-
-                
-                <!-- Offer 2 -->
-                <div class="offer-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
-                    <div class="relative">
-                        <img src="https://raw.githubusercontent.com/idealab051/idealab-website/main/images/madrid_kraljevski_grad.jpeg" alt="Madrid" class="w-full h-64 object-cover">
-                        <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                            Europa
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Madrid - kraljevski grad</h3>
-                        <p class="text-gray-600 mb-4">4 dana / 3 noći u srcu grada s obilaskom svih glavnih znamenitosti</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-blue-600">od 790 €</span>
- <a href="https://raw.githubusercontent.com/idealab051/idealab-website/main/putovanja/madrid-2026.pdf" target="_blank" class="text-blue-800 font-medium hover:text-blue-600 flex items-center">
-                                Detalji <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Offer 3 -->
-<div class="offer-card bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
-    <div class="relative">
-        <img src="images/advent_london.jpg" alt="Advent u Londonu" class="w-full h-64 object-cover">
-        <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-            Advent
+        <div class="text-center mt-12">
+          <a href="#putovanja" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">Pogledajte sve ponude</a>
         </div>
-    </div>
-    <div class="p-6">
-        <h3 class="text-xl font-bold mb-2">Advent u Londonu</h3>
-        <p class="text-gray-600 mb-4">4 dana / 3 noći s posjetom adventskim sajmovima</p>
-        <div class="flex justify-between items-center">
-            <span class="text-2xl font-bold text-blue-600">od 780 €</span>
-<a href="https://raw.githubusercontent.com/idealab051/idealab-website/main/putovanja/letak-Malta-ljetna-2025.pdf" target="_blank" class="text-blue-800 font-medium hover:text-blue-600 flex items-center">
-                Detalji <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-        </div>
-    </div>
-</div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#putovanja" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
-                    Pogledajte sve ponude
-                </a>
-            </div>
-        </div>
+      </div>
     </section>
 
     <!-- Destinations Section -->
@@ -240,159 +185,13 @@
                 <button class="filter-btn px-4 py-2 rounded-full border border-blue-800 text-blue-800 hover:bg-blue-50 transition" data-filter="daleka">Daleka putovanja</button>
             </div>
             
-            <!-- Destination Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Destination 1 -->
-                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md hrvatska" data-category="hrvatska">
-                    <img src="images/rijeka_food.jpg" alt="Rijeka Food Tour" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold">Rijeka Food Tour</h3>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Hrvatska</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-3">1 dan s vodičem po tipičnim riječkim gourmet lokacijama</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-blue-600 font-bold">od 90 €</span>
-                            <a href="#" class="text-blue-800 hover:text-blue-600">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Destination 2 -->
-                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md europa" data-category="europa">
-                   <img src="https://raw.githubusercontent.com/idealab051/idealab-website/main/images/madrid_kraljevski_grad.jpeg" alt="Madrid" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold">Kraljevski Madrid</h3>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Europa</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-3">4 dana / 3 noći s obilaskom glavnih znamenitosti</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-blue-600 font-bold">od 790 €</span>
-                            <a href="#" class="text-blue-800 hover:text-blue-600">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Destination 3 -->
-<div class="destination-item bg-white rounded-lg overflow-hidden shadow-md advent" data-category="advent">
-    <img src="images/advent_london.jpg" alt="Advent u Londonu" class="w-full h-48 object-cover">
-    <div class="p-4">
-        <div class="flex justify-between items-start mb-2">
-            <h3 class="text-lg font-bold">Advent u Londonu</h3>
-            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Advent</span>
-        </div>
-        <p class="text-gray-600 text-sm mb-3">4 dana / 3 noći s posjetom adventskim sajmovima</p>
-        <div class="flex justify-between items-center">
-            <span class="text-blue-600 font-bold">od 440 €</span>
-            <a href="#" class="text-blue-800 hover:text-blue-600">
-                <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
-</div>
-                
-                <!-- Destination 4 -->
-                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md citybreak" data-category="citybreak">
-                    <img src="images/barcelona_photo.jpg" alt="Barcelona vikend" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold">Barcelona vikend</h3>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">City break</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-3">3 dana / 2 noći s obilaskom Sagrade Famílie</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-blue-600 font-bold">od 520 €</span>
-                            <a href="#" class="text-blue-800 hover:text-blue-600">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Destination 5 -->
-                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md tematske" data-category="tematske">
-                    <img src="images/istria_winery.jpg" alt="Vinska tura Istre" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold">Vinska tura Istre</h3>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Tematske ture</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-3">1-dnevna tura najboljim vinarijama Istre s degustacijom</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-blue-600 font-bold">od 80 €</span>
-                            <a href="#" class="text-blue-800 hover:text-blue-600">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Destination 6 -->
-                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md daleka" data-category="daleka">
-                    <img src="https://raw.githubusercontent.com/idealab051/idealab-website/main/images/nyc.jpg" alt="Ljeto u NYC" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold">Ljeto u NYC</h3>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Daleka putovanja</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-3">8 dana / 6 noći u Velikoj Jabuci uz pratnju vodiča</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-blue-600 font-bold">od 1.790 €</span>
-                            <a href="#" class="text-blue-800 hover:text-blue-600">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Destination 7 -->
-<!-- Destination - Malta -->
-<div class="destination-item bg-white rounded-lg overflow-hidden shadow-md europa" data-category="europa">
-    <img src="https://raw.githubusercontent.com/idealab051/idealab-website/main/images/malta_otok_sunca.jpg" alt="Malta" class="w-full h-48 object-cover">
-    <div class="p-4">
-        <div class="flex justify-between items-start mb-2">
-            <h3 class="text-lg font-bold">Malta – otok sunca</h3>
-            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Europa</span>
-        </div>
-        <p class="text-gray-600 text-sm mb-3">5 dana / 4 noći s vodičem i obilaskom Valette i otoka</p>
-        <div class="flex justify-between items-center">
-            <span class="text-blue-600 font-bold">od 850 €</span>
-            <a href="#" class="text-blue-800 hover:text-blue-600">
-                <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
-</div>
-                
-                <!-- Destination 8 -->
-                <div class="destination-item bg-white rounded-lg overflow-hidden shadow-md daleka" data-category="daleka">
-                    <img src="https://raw.githubusercontent.com/idealab051/idealab-website/main/images/daleki_japan.jpeg" alt="Japan" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold">Daleki Japan</h3>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Daleka putovanja</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-3">12 dana / 10 noći u zemlji izlazećeg sunca</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-blue-600 font-bold">od 1.990 €</span>
-                            <a href="#" class="text-blue-800 hover:text-blue-600">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-
-                        </div>
-                    </div>
-                </div>
+            <!-- Ponude se automatski učitavaju iz data/putovanja.json -->
+            <div id="sva-putovanja" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" aria-live="polite">
+              <p class="text-gray-600">Učitavanje putovanja…</p>
             </div>
-           
+            <p id="nema-putovanja" class="hidden text-center text-gray-600 mt-8">Trenutačno nema ponuda u ovoj kategoriji.</p>
             <div class="text-center mt-12">
-                <a href="#" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
-                    Učitaj još ponuda
-                </a>
+              <a href="#kontakt" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">Pošaljite nam upit za putovanje</a>
             </div>
         </div>
     </section>
@@ -833,6 +632,7 @@
         </div>
     </footer>
 
+    <script src="js/putovanja.js" defer></script>
     <script>
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -840,30 +640,6 @@
         
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Destination filtering
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const destinationItems = document.querySelectorAll('.destination-item');
-        
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                const filterValue = button.getAttribute('data-filter');
-                
-                destinationItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
         });
         
         // Smooth scrolling for anchor links
@@ -875,6 +651,7 @@
                 mobileMenu.classList.add('hidden');
                 
                 const targetId = this.getAttribute('href');
+                if (!targetId || targetId === '#') return;
                 const targetElement = document.querySelector(targetId);
                 
                 if (targetElement) {

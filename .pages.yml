@@ -1,0 +1,78 @@
+# IDEALAB – uređivanje ponuda bez mijenjanja koda
+media:
+  - name: fotografije
+    label: Fotografije putovanja
+    input: images
+    output: /images
+    rename: safe
+    categories: [image]
+  - name: leci
+    label: PDF letci
+    input: putovanja
+    output: /putovanja
+    rename: safe
+    extensions: [pdf]
+
+content:
+  - name: putovanja
+    label: Putovanja – slike, tekst i PDF
+    type: file
+    path: data/putovanja.json
+    format: json
+    list: true
+    operations:
+      delete: false
+    fields:
+      - name: naslov
+        label: Naziv putovanja
+        type: string
+        required: true
+      - name: opis
+        label: Kratak opis za karticu
+        type: text
+        required: true
+        description: '2–3 rečenice. Dulji opis neće poremetiti izgled kartice.'
+      - name: termin
+        label: Termin (neobvezno)
+        type: string
+        description: 'Npr. 06.–18.03.2027. – ostavi prazno ako datum nije potvrđen.'
+      - name: cijena
+        label: Cijena kao tekst
+        type: string
+        description: 'Npr. od 780 €. Ako ostane prazno, pisat će Cijena na upit.'
+      - name: slika
+        label: Fotografija – odaberi ili učitaj
+        type: image
+        options:
+          media: fotografije
+      - name: pdf
+        label: PDF letak – odaberi ili učitaj
+        type: file
+        options:
+          media: leci
+          extensions: [pdf]
+      - name: kategorija
+        label: Kategorija
+        type: select
+        required: true
+        options:
+          values:
+            - name: europa
+              label: Europska putovanja
+            - name: hrvatska
+              label: Hrvatska
+            - name: advent
+              label: Advent
+            - name: citybreak
+              label: City break
+            - name: tematske
+              label: Tematske ture
+            - name: daleka
+              label: Daleka putovanja
+      - name: izdvojeno
+        label: Izdvojena ponuda na vrhu stranice
+        type: boolean
+      - name: vidljivo
+        label: Prikaži putovanje na stranici
+        type: boolean
+        description: 'Isključi kada putovanje još nije spremno ili je završeno.'

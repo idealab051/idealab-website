@@ -129,13 +129,33 @@
  }
  // Rotiraju se samo fotografije koje je vlasnica sama odabrala u CMS-u.
  const hero=$('.hero');
+ const motionButton=$('.hero-motion-toggle');
+ if(hero && motionButton)motionButton.addEventListener('click',()=>{
+   const paused=hero.classList.toggle('motion-paused');
+   const label=paused?'Pokreni animaciju pozadine':'Pauziraj animaciju pozadine';
+   motionButton.textContent=paused?'▶':'Ⅱ';
+   motionButton.setAttribute('aria-pressed',String(paused));
+   motionButton.setAttribute('aria-label',label);
+   motionButton.title=label;
+ });
  if(hero)getJson('pozadine.json').then(items=>{
    if(!Array.isArray(items))return;
    const photos=items.filter(x=>x && x.aktivna===true).map(x=>media(x.slika)).filter(Boolean);
    if(!photos.length)return; // izvorna slika ostaje ako je galerija prazna
-   const chosen=photos[Math.floor(Math.random()*photos.length)];
+   // Svako osvježavanje u istoj kartici prikazuje sljedeću aktivnu fotografiju.
+   // Početna je prva aktivna fotografija; pohrana je odvojena za svaki web/putanju.
+   const storageKey='idealab.hero.last.v2:'+location.pathname;
+   const unique=[...new Set(photos)];
+   let previous='';
+   try { previous=history.state?.idealabHeroLast||''; } catch(e) {}
+   if(!previous)try { previous=sessionStorage.getItem(storageKey)||''; } catch(e) {}
+   if(!previous)try { previous=localStorage.getItem(storageKey)||''; } catch(e) {}
+   const previousIndex=unique.indexOf(previous);
+   const chosen=unique[previousIndex<0?0:(previousIndex+1)%unique.length];
+   try { history.replaceState({...history.state,idealabHeroLast:chosen},''); } catch(e) {}
+   try { sessionStorage.setItem(storageKey,chosen); } catch(e) {}
+   try { localStorage.setItem(storageKey,chosen); } catch(e) {}
    const safe=chosen.replace(/"/g,'%22');
-   const overlay='linear-gradient(rgba(0, 82, 147, 0.65), rgba(0, 82, 147, 0.65))';
-   hero.style.backgroundImage=overlay+', url("'+safe+'")';
+   hero.style.setProperty('--hero-photo', 'url("'+safe+'")');
  }).catch(e=>console.warn('Idealab pozadine: ostaje originalna fotografija.',e));
 })();

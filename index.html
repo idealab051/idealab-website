@@ -20,12 +20,71 @@
         }
         
         .hero {
-            background: linear-gradient(rgba(0, 82, 147, 0.65), rgba(0, 82, 147, 0.65)), url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
+            --hero-photo: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background: #263447;
             min-height: 80vh;
         }
+        .hero::before, .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+        .hero::before {
+            z-index: -2;
+            background-image: var(--hero-photo);
+            background-size: cover;
+            background-position: center;
+            transform-origin: center;
+            animation: idealab-hero-motion 18s ease-in-out infinite alternate;
+        }
+        .hero::after {
+            z-index: -1;
+            background: linear-gradient(180deg, rgba(15, 23, 35, 0.30) 0%, rgba(15, 23, 35, 0.52) 48%, rgba(15, 23, 35, 0.40) 100%);
+        }
+        @keyframes idealab-hero-motion {
+            from { transform: scale(1); }
+            to { transform: scale(1.10); }
+        }
+        .hero.motion-paused::before { animation-play-state: paused; }
+        .hero-motion-toggle {
+            position: absolute;
+            right: 16px;
+            bottom: 16px;
+            z-index: 2;
+            display: inline-grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(255,255,255,.65);
+            border-radius: 50%;
+            background: rgba(15,23,35,.38);
+            color: white;
+            font: 18px/1 Arial, sans-serif;
+            cursor: pointer;
+        }
+        .hero-motion-toggle:hover { background: rgba(15,23,35,.68); }
+        .hero-motion-toggle:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+        @media (prefers-reduced-motion: reduce) {
+            .hero::before { animation: none; }
+            .hero-motion-toggle { display: none; }
+        }
         
+        .hero h1, .hero p {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+        }
+        .hero a.border-white {
+            background-color: rgba(15, 23, 35, 0.18);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+        }
+        .hero a.border-white:hover {
+            background-color: white;
+            text-shadow: none;
+        }
+
         .offer-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -103,6 +162,7 @@
                 <a href="#kontakt" class="border-2 border-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-blue-800 transition">Kontaktiraj nas</a>
             </div>
         </div>
+        <button type="button" class="hero-motion-toggle" aria-label="Pauziraj animaciju pozadine" aria-pressed="false" title="Pauziraj animaciju pozadine">Ⅱ</button>
     </section>
 
     <!-- About Section -->

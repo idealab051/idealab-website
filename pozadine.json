@@ -1,7 +1,7 @@
 [
   {
     "slika": "/images/paris-spring.jpeg",
-    "aktivna": true
+    "aktivna": false
   },
   {
     "slika": "/images/madrid_kraljevski_grad.jpeg",
@@ -17,6 +17,10 @@
   },
   {
     "slika": "/images/istanbul-photo.jpeg",
-    "aktivna": false
+    "aktivna": true
+  },
+  {
+    "slika": "/images/japan.jpg",
+    "aktivna": true
   }
 ]

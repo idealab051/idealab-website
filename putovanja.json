@@ -2,7 +2,7 @@
   {
     "naslov": "Spring Break in NYC",
     "termin": "30.03. - 06.04.2027.",
-    "opis": "8 dana / 6 noći eduTRAVEL program u Velikoj Jabuci s vodičem tijekom proljetnih praznika. Idealnno vrijeme za upoznati grad koji nikada ne spava.",
+    "opis": "8 dana / 6 noći eduTRAVEL program u Velikoj Jabuci s vodičem tijekom proljetnih praznika. Idealno vrijeme za upoznati grad koji nikada ne spava.",
     "cijena": "1.790 € + 410 € zrakoplovne pristojbe",
     "slika": "/images/nyc.jpg",
     "pdf": "/putovanja/nyc-spring-2027.pdf",
@@ -12,19 +12,22 @@
   },
   {
     "naslov": "Madrid – kraljevski grad",
+    "termin": "19.11. - 22.11.2026.",
     "opis": "4 dana / 3 noći u srcu grada s obilaskom glavnih znamenitosti",
-    "cijena": "od 790 €",
+    "cijena": "od 790 € early bird",
     "slika": "/images/madrid_kraljevski_grad.jpeg",
-    "pdf": "/putovanja/madrid-2026.pdf",
+    "pdf": "/putovanja/kraljevski-madrid-11-2026.pdf",
     "kategorija": "europa",
-    "izdvojeno": true,
+    "izdvojeno": false,
     "vidljivo": true
   },
   {
     "naslov": "Advent u Londonu",
+    "termin": "28.11. - 01.12.2026.",
     "opis": "4 dana / 3 noći s posjetom adventskim sajmovima",
     "cijena": "od 780 €",
     "slika": "/images/advent_london.jpg",
+    "pdf": "/putovanja/london-2026-advent.pdf",
     "kategorija": "advent",
     "izdvojeno": true,
     "vidljivo": true

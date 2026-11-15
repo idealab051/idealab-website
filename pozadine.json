@@ -10,5 +10,13 @@
   {
     "slika": "/images/nyc.jpg",
     "aktivna": true
+  },
+  {
+    "slika": "/images/nyc-city-photo.jpg",
+    "aktivna": true
+  },
+  {
+    "slika": "/images/istanbul-photo.jpeg",
+    "aktivna": false
   }
 ]

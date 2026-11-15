@@ -7,8 +7,7 @@
     "pdf": "/putovanja/nyc-2026.pdf",
     "kategorija": "daleka",
     "izdvojeno": true,
-    "vidljivo": true,
-    "termin": ""
+    "vidljivo": true
   },
   {
     "naslov": "Madrid – kraljevski grad",
@@ -18,8 +17,7 @@
     "pdf": "/putovanja/madrid-2026.pdf",
     "kategorija": "europa",
     "izdvojeno": true,
-    "vidljivo": true,
-    "termin": ""
+    "vidljivo": true
   },
   {
     "naslov": "Advent u Londonu",
@@ -28,9 +26,7 @@
     "slika": "/images/advent_london.jpg",
     "kategorija": "advent",
     "izdvojeno": true,
-    "vidljivo": true,
-    "termin": "",
-    "pdf": ""
+    "vidljivo": true
   },
   {
     "naslov": "Rijeka Food Tour",
@@ -39,9 +35,7 @@
     "slika": "/images/rijeka_food.jpg",
     "kategorija": "hrvatska",
     "izdvojeno": false,
-    "vidljivo": true,
-    "termin": "",
-    "pdf": ""
+    "vidljivo": true
   },
   {
     "naslov": "Barcelona vikend",
@@ -50,9 +44,7 @@
     "slika": "/images/barcelona_photo.jpg",
     "kategorija": "citybreak",
     "izdvojeno": false,
-    "vidljivo": true,
-    "termin": "",
-    "pdf": ""
+    "vidljivo": true
   },
   {
     "naslov": "Vinska tura Istre",
@@ -61,9 +53,7 @@
     "slika": "/images/istria_winery.jpg",
     "kategorija": "tematske",
     "izdvojeno": false,
-    "vidljivo": true,
-    "termin": "",
-    "pdf": ""
+    "vidljivo": true
   },
   {
     "naslov": "Malta – otok sunca",
@@ -72,19 +62,16 @@
     "slika": "/images/malta_otok_sunca.jpg",
     "kategorija": "europa",
     "izdvojeno": false,
-    "vidljivo": true,
-    "termin": "",
-    "pdf": ""
+    "vidljivo": true
   },
   {
-    "naslov": "Daleki Japan",
-    "opis": "13 dana / 10 noći u zemlji izlazećeg sunca",
-    "cijena": "od 1.990 €",
+    "naslov": "Japan iza vrata tradicije",
+    "termin": "06.03. - 18.03.2027.",
+    "opis": "13 dana / 10 noći u zemlji izlazećeg sunca | Otkrijte Japan izvan uobičajenih turističkih ruta. Od živopisnog Tokija do tradicionalnog Kyota, susreta s japanskim običajima, cvatnje šljiva i nezaboravnih gastronomskih doživljaja. Pažljivo osmišljeno putovanje u maloj grupi, za sve koji žele upoznati autentični Japan.",
+    "cijena": "na upit",
     "slika": "/images/daleki_japan.jpeg",
     "kategorija": "daleka",
-    "izdvojeno": false,
-    "vidljivo": true,
-    "termin": "",
-    "pdf": ""
+    "izdvojeno": true,
+    "vidljivo": true
   }
 ]

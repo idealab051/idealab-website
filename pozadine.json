@@ -1,0 +1,14 @@
+[
+  {
+    "slika": "/images/paris-spring.jpeg",
+    "aktivna": true
+  },
+  {
+    "slika": "/images/madrid_kraljevski_grad.jpeg",
+    "aktivna": true
+  },
+  {
+    "slika": "/images/nyc.jpg",
+    "aktivna": true
+  }
+]

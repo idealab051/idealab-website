@@ -7,7 +7,7 @@
     "sazetak": "Kako organizirati putovanje s vašim kućnim ljubimcem? Pročitajte naše savjete za bezbrižno putovanje s vašim četveronožnim prijateljima.",
     "slika": "/images/travel_pets.jpg",
     "tekst": "<p>Kako organizirati putovanje s vašim kućnim ljubimcem? Pročitajte naše savjete za bezbrižno putovanje s vašim četveronožnim prijateljima.</p>",
-    "objavljeno": true
+    "objavljeno": false
   },
   {
     "id": "07936895-4ffb-4a29-a5b4-e01c94afbf04",
@@ -17,7 +17,7 @@
     "sazetak": "Spojite znatiželju i avanturu kroz naša pažljivo osmišljena obrazovna putovanja. Istražite kulturu, povijest i jezike svijeta na način koji nadilazi učionicu.",
     "slika": "/images/educational_travel_world.jpg",
     "tekst": "<p>Spojite znatiželju i avanturu kroz naša pažljivo osmišljena obrazovna putovanja. Istražite kulturu, povijest i jezike svijeta na način koji nadilazi učionicu.</p>",
-    "objavljeno": true
+    "objavljeno": false
   },
   {
     "id": "74c6fad1-f4ec-4343-a694-798e1c60a98a",
@@ -25,8 +25,17 @@
     "datum": "2025-03-27",
     "kategorija": "Trendovi",
     "sazetak": "Koje su destinacije u trendu ove godine? Otkrijte najnovije smjernice u svijetu putovanja i inspirirajte se za svoje sljedeće putovanje.",
-    "slika": "https://images.unsplash.com/photo-1533929736458-ca588d08c8be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
     "tekst": "<p>Koje su destinacije u trendu ove godine? Otkrijte najnovije smjernice u svijetu putovanja i inspirirajte se za svoje sljedeće putovanje.</p>",
+    "objavljeno": false
+  },
+  {
+    "id": "b03923ea-c11d-4b43-bd41-5d41da27414e",
+    "naslov": "Japan u ožujku: zašto ne treba čekati cvatnju trešanja?",
+    "datum": "2026-11-16",
+    "kategorija": "Inspiracija i destinacije",
+    "sazetak": "Prije nego što Japan prekriju ružičasti cvjetovi trešanja, u vrtovima se pojavljuje druga proljetna ljepota – cvatnja šljiva. Otkrijte zašto je rani ožujak zanimljivo vrijeme za putovanje u Japan.",
+    "slika": "/images/tokyo.jpg",
+    "tekst": "<p>Kada pomislimo na proljeće u Japanu, gotovo uvijek zamislimo sakuru – cvjetove trešnje, parkove prekrivene ružičastim laticama i šetnje ispod krošnji. No proljetna priča Japana počinje mnogo prije toga.</p><h3>Prvi znakovi proljeća</h3><p>Japanska šljiva, poznata kao <em>ume</em>, cvate tijekom kasne zime i ranog proljeća, ovisno o području i vremenskim prilikama. Njezini bijeli, ružičasti i crveni cvjetovi pojavljuju se na granama dok je okolni krajolik još uvijek zimski. Upravo taj kontrast daje vrtovima poseban šarm.</p><p>Cvatnja nije nešto što se može precizno zakazati. Zato je najbolje planirati putovanje koje će biti vrijedno svakog dana, neovisno o tome jesu li stabla u punom cvatu.</p><h3>Tokio i Kyoto – dva različita svijeta</h3><p>Tokio je grad u kojem se suvremena tehnologija, mala obiteljska trgovina, svetište i velika prometna postaja mogu naći u istoj četvrti. Kyoto nudi drugačiji ritam: tradicionalne ulice, vrtove, hramove i priliku da se upoznaju običaji koji su oblikovali japansku svakodnevicu.</p><p>Ne treba pokušavati vidjeti sve. Ponekad najljepše uspomene nastanu tijekom šetnje starom četvrti, uz obrok u malenom lokalu ili u razgovoru s lokalnim vodičem.</p><h3>Putovanje koje ostavlja prostor za doživljaj</h3><p>Za prvi susret s Japanom važno je dobro rasporediti dane i odabrati sadržaje koji pokazuju različita lica zemlje. Udoban smještaj, promišljen prijevoz i slobodno vrijeme jednako su važni kao i popis znamenitosti.</p><p>U ideaLAB travel&amp;tours pripremamo autorsko putovanje <strong>Japan – Iza vrata tradicije</strong>, planirano od 6. do 18. ožujka 2027. Želimo povezati suvremeni Japan s njegovim tradicijama, gastronomijom i lokalnim iskustvima. Konačni program i cijena bit će dostupni nakon završetka pripreme.</p><p>Zanima vas putovanje u Japan? Pogledajte aktualne programe u rubrici ideaTravel ili nam pošaljite upit.</p>",
     "objavljeno": true
   }
 ]

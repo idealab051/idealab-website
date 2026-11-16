@@ -21,7 +21,7 @@
  function changeImage(img,raw){
    if(!img)return;
    const url=media(raw);
-   if(url)img.src=url; else if (!text(raw)) img.src=imgFallback;
+   img.src=url || imgFallback;
    img.loading='lazy';
  }
  function addDate(card,trip,featured){
@@ -71,27 +71,33 @@
    prepareLink(n,t,featured);
    return n;
  }
- const featured=$('.offer-card')?.parentElement;
- const destinations=$('.destination-item')?.parentElement;
+ const featured=$('#featured-grid');
+ const destinations=$('#destinations-grid');
+ const status=(grid,msg)=>{const p=document.createElement('p');p.className='text-gray-600 col-span-full';p.setAttribute('role','status');p.textContent=msg;grid.replaceChildren(p);grid.setAttribute('aria-busy','false');};
+ const templateFor=id=>document.getElementById(id)?.content.firstElementChild;
  if(featured && destinations){
-   const ft=$('.offer-card').cloneNode(true),dt=$('.destination-item').cloneNode(true);
+   const ft=templateFor('offer-card-template'),dt=templateFor('destination-card-template');
    getJson('putovanja.json').then(all=>{
      if(!Array.isArray(all))throw Error('Popis putovanja nije valjan');
      const trips=all.filter(x=>x && x.vidljivo===true && text(x.naslov));
-     featured.replaceChildren(...trips.filter(x=>x.izdvojeno===true).slice(0,3).map(x=>card(x,true,ft)));
-     destinations.replaceChildren(...trips.map(x=>card(x,false,dt)));
+     if(!ft || !dt)throw Error('Nedostaje predložak');
+     const selected=trips.filter(x=>x.izdvojeno===true).slice(0,3);
+     if(selected.length) featured.replaceChildren(...selected.map(x=>card(x,true,ft))); else status(featured,'Trenutno nema izdvojenih putovanja.');
+     if(trips.length) destinations.replaceChildren(...trips.map(x=>card(x,false,dt))); else status(destinations,'Trenutno nema objavljenih putovanja. Javite nam se za ponudu.');
+     featured.setAttribute('aria-busy','false');destinations.setAttribute('aria-busy','false');
      const active=$('.filter-btn.active');
      const val=active?.dataset.filter||'all';
      destinations.querySelectorAll('.destination-item').forEach(x=>{x.style.display=val==='all'||x.dataset.category===val?'block':'none';});
-   }).catch(e=>console.error('Idealab putovanja: ostaje izvorni prikaz jer podaci nisu učitani.',e));
+   }).catch(e=>{console.error('Idealab putovanja:',e); const msg='Aktualna putovanja trenutno nisu dostupna. Osvježite stranicu ili nam se javite na info@idealab.hr.';status(featured,msg);status(destinations,msg);});
  }
- const blogGrid=$('#blog .grid');
+ const blogGrid=$('#blog-grid');
  if(blogGrid){
-   const template=blogGrid.firstElementChild?.cloneNode(true);
+   const template=templateFor('blog-card-template');
    const more=$('#blog .text-center.mt-12 a');
-   let blogs=[],shown=3;
+   let blogs=[],shown=6;
    const drawBlog=()=>{
-     if(!template)return;
+     if(!template){status(blogGrid,'Članci trenutno nisu dostupni.');return;}
+     if(!blogs.length){status(blogGrid,'Trenutno nema objavljenih članaka.');if(more)more.hidden=true;return;}
      blogGrid.replaceChildren(...blogs.slice(0,shown).map(x=>{
        const n=template.cloneNode(true);
        changeImage($('img',n),x.slika);
@@ -109,13 +115,14 @@
        const a=$('a',n);if(a)a.href='clanak.html?id='+encodeURIComponent(text(x.id));
        return n;
      }));
-     if(more)more.parentElement.hidden=shown>=blogs.length;
+     blogGrid.setAttribute('aria-busy','false');
+     if(more){more.hidden=shown>=blogs.length;more.parentElement.hidden=shown>=blogs.length;}
    };
    getJson('novosti.json').then(data=>{
      if(!Array.isArray(data))throw Error('Popis bloga nije valjan');
      blogs=data.filter(x=>x && x.objavljeno===true && text(x.naslov) && text(x.id));
      drawBlog();
-   }).catch(e=>console.error('Idealab blog: ostaje originalni izgled.',e));
+   }).catch(e=>{console.error('Idealab blog:',e);status(blogGrid,'Članci trenutno nisu dostupni. Osvježite stranicu.');if(more)more.parentElement.hidden=true;});
    if(more)more.addEventListener('click',e=>{e.preventDefault();shown+=3;drawBlog();});
  }
 })();

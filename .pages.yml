@@ -58,7 +58,39 @@ content:
       media: programi
       extensions:
       - pdf
-    description: Bez PDF-a na kartici će pisati Potraži i otvoriti kontakt-obrazac.
+    description: PDF je neobvezan; putnik ga može preuzeti na zasebnoj stranici putovanja.
+  - name: url_naziv
+    label: URL naziv (neobvezno)
+    type: string
+    description: Npr. japan-iza-vrata-tradicije. Ako je prazno, nastaje iz naslova. Zadrži isti URL kad mijenjaš naslov.
+  - name: detaljni_opis
+    label: Detaljan opis putovanja (neobvezno)
+    type: rich-text
+    options:
+      format: html
+      media: fotografije
+      switcher: false
+  - name: program
+    label: Program putovanja po danima (neobvezno)
+    type: rich-text
+    options:
+      format: html
+      media: fotografije
+      switcher: false
+  - name: ukljuceno
+    label: Što je uključeno u cijenu (neobvezno)
+    type: rich-text
+    options:
+      format: html
+      media: fotografije
+      switcher: false
+  - name: nije_ukljuceno
+    label: Što nije uključeno u cijenu (neobvezno)
+    type: rich-text
+    options:
+      format: html
+      media: fotografije
+      switcher: false
   - name: kategorija
     label: Kategorija (kao na originalnoj stranici)
     type: select
@@ -101,6 +133,10 @@ content:
     label: Naslov
     type: string
     required: true
+  - name: url_naziv
+    label: URL naziv članka (neobvezno)
+    type: string
+    description: Ako je prazno, nastaje iz naslova. Zadrži isti URL kad mijenjaš naslov.
   - name: datum
     label: Datum objave
     type: date
@@ -223,3 +259,38 @@ content:
     label: Prethodni Opći uvjeti putovanja – 2026. – opis i datum primjene
     type: text
     required: true
+- name: instagram-objave
+  label: Instagram – izdvojene objave
+  type: file
+  path: instagram.json
+  format: json
+  list: true
+  fields:
+  - name: naslov
+    label: Kratki naslov objave
+    type: string
+    required: true
+  - name: slika
+    label: Fotografija ili naslovnica Reelsa
+    type: image
+    required: true
+    options:
+      media: fotografije
+  - name: poveznica
+    label: Poveznica na Instagram objavu ili Reel
+    type: string
+    required: true
+    description: Kopiraj poveznicu s Instagrama (https://www.instagram.com/p/... ili /reel/...).
+  - name: vrsta
+    label: Vrsta objave
+    type: select
+    options:
+      values:
+      - name: fotografija
+        label: Fotografija / objava
+      - name: reel
+        label: Reel / video
+  - name: aktivna
+    label: Prikaži na naslovnici
+    type: boolean
+    description: Označi za prikaz. Prikazuje se prvih šest aktivnih objava redom iz CMS-a.

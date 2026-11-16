@@ -14,8 +14,8 @@
 .gift-page a.gift-primary:hover,.gift-page button.gift-primary:hover,.gift-page .gift-submit:hover{background:#1d4ed8;transform:translateY(-1px);}
 .gift-page .gift-hero-art{position:relative;min-height:345px;display:grid;place-items:center;}
 .gift-page .gift-hero-card{display:block;max-width:100%;position:absolute;width:88%;height:auto;object-fit:contain;border-radius:10px;box-shadow:0 19px 44px rgba(30,64,175,.17);background:white;}
-.gift-page .gift-hero-back{transform:translate(5%,-15%) rotate(8deg);width:80%;opacity:.85;}
-.gift-page .gift-hero-front{transform:translate(-5%,9%) rotate(-5deg);}
+.gift-page .gift-hero-back{transform:translate(5%,-15%) rotate(8deg);width:84%;opacity:.85;}
+.gift-page .gift-hero-front{transform:translate(-5%,9%) rotate(-5deg);width:84%;}
 .gift-page .gift-art-caption{position:absolute;bottom:0;color:#1e40af;font-size:.85rem;font-style:italic;letter-spacing:.03em;}
 .gift-page .gift-section{padding:76px 0;}
 .gift-page .gift-section-heading{text-align:center;max-width:730px;margin:0 auto 35px;}

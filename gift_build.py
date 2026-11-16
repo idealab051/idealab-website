@@ -93,7 +93,7 @@ def make(root, out, page):
         <p>Možda ga daruje cijelo društvo, obitelj ili netko tko je samo poželio razveseliti dragu osobu. Svaki je razlog dobar da nastane nova uspomena.</p>
         <p class="gift-saying">Ne znate što napisati?<br><strong>Prepustite to nama.</strong></p>
         <p>Rado ćemo vam pomoći osmisliti posvetu za posebnu prigodu.</p>
-        <div class="gift-how"><h3>Kako to funkcionira?</h3><ol><li>Odaberite dizajn i upišite svoje želje.</li><li>Poslat ćemo vam potvrdu i podatke za uplatu.</li><li>Nakon uplate personalizirat ćemo poklon bon u Canvi i dostaviti ga e-mailom kao PDF.</li></ol></div>
+        <div class="gift-how"><h3>Kako to funkcionira?</h3><ol><li>Odaberite dizajn i upišite svoje želje.</li><li>Poslat ćemo vam potvrdu i podatke za uplatu.</li><li>Nakon uplate personalizirat ćemo poklon bon i dostaviti ga e-mailom u PDF formatu.</li></ol></div>
       </div>
       <div class="gift-form-card">
         <h3>Ispričajte nam svoju ideju</h3><p class="gift-form-intro">Ovo je neobvezujući zahtjev – plaćanje nije potrebno prilikom ispunjavanja obrasca.</p>
@@ -152,3 +152,91 @@ def make(root, out, page):
         xml = xml.replace('</urlset>', '  <url><loc>'+SITE_URL+'</loc></url>\n</urlset>')
     sitemap.write_text(xml, encoding='utf-8')
     print(f'Poklon bonovi: {len(vouchers)} dizajna, nova stranica i najava na naslovnici.')
+
+    # Jedan diskretan pokloncic uz zaglavlje, bez nove stavke izbornika.
+    # Dodatak se primjenjuje na izlazne HTML stranice, ne mijenja CMS podatke.
+    gift_icon = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" '
+                 'width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" '
+                 'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+                 '<rect x="3" y="8" width="18" height="13" rx="2"/>'
+                 '<path d="M12 8v13M3 12h18M12 8c-1.8 0-5.1-1-5.1-3.2A2.8 2.8 0 0 1 9.6 2C11.2 2 12 5.1 12 8Zm0 0c1.8 0 5.1-1 5.1-3.2A2.8 2.8 0 0 0 14.4 2C12.8 2 12 5.1 12 8Z"/>'
+                 '</svg>')
+    gift_desktop = ('<a class="idealab-gift-link idealab-gift-link--desktop" '
+                    'href="/poklon-bonovi.html" title="Poklon bonovi">'
+                    + gift_icon + '<span>Poklon bon</span></a>')
+    gift_mobile = ('<a class="idealab-gift-link idealab-gift-link--mobile" '
+                   'href="/poklon-bonovi.html" title="Poklon bonovi" aria-label="Poklon bonovi">'
+                   + gift_icon + '</a>')
+    css_link = '<link rel="stylesheet" href="/idealab-poklon-link.css?v=1">'
+
+    home_file = out / 'index.html'
+    homepage = home_file.read_text(encoding='utf-8')
+    original_home_header = '<header class="bg-white shadow-md sticky top-0 z-50">'
+    if original_home_header not in homepage:
+        raise ValueError('Nedostaje ocekivano zaglavlje u index.html: poklon link nije dodan')
+    homepage = homepage.replace(original_home_header,
+                                '<header class="bg-white shadow-md sticky top-0 z-50 idealab-gift-header">', 1)
+    home_cta = '<div class="hidden xl:flex items-center space-x-4">'
+    if home_cta not in homepage or '<button id="mobile-menu-button"' not in homepage:
+        raise ValueError('Nije pronadjen desktop ili mobilni izbornik na naslovnici')
+    homepage = homepage.replace(home_cta, home_cta + gift_desktop, 1)
+    homepage = homepage.replace('<button id="mobile-menu-button"',
+                                gift_mobile + '<button id="mobile-menu-button"', 1)
+    homepage = homepage.replace('</head>', css_link + '\n</head>', 1)
+    home_file.write_text(homepage, encoding='utf-8')
+
+    # Zadrzi potpuno isto zaglavlje i na automatski generiranim stranicama
+    # putovanja, bloga i poklon bonova. Na njima dodaj i upravljanje hamburgerom.
+    match = re.search(r'<header\b[^>]*>.*?</header>', homepage, flags=re.I | re.S)
+    if not match:
+        raise ValueError('Nedostaje zaglavlje naslovnice')
+    shared_header = match.group(0)
+    for target, link in [('#', '/'), ('#putovanja', '/#putovanja'),
+                         ('#o-nama', '/#o-nama'), ('#blog', '/#blog'),
+                         ('#kontakt', '/#kontakt'),
+                         ('design-travel.html','/design-travel.html'),
+                         ('educational-travel.html','/educational-travel.html')]:
+        shared_header = shared_header.replace('href="'+target+'"', 'href="'+link+'"')
+    # Vec sucitava postojece pravne/putnicke stranice, ovo je samo mobilni izbornik.
+    mobile_js = """<script data-idealab-generated-nav>
+    document.addEventListener('DOMContentLoaded',function(){
+      const btn=document.getElementById('mobile-menu-button');
+      const menu=document.getElementById('mobile-menu');
+      if(!btn||!menu)return;
+      btn.setAttribute('aria-label','Otvori izbornik');
+      btn.setAttribute('aria-expanded','false');
+      btn.addEventListener('click',function(){
+        const willShow=menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded',String(willShow));
+      });
+      menu.querySelectorAll('a').forEach(function(a){
+        a.addEventListener('click',function(){
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded','false');
+        });
+      });
+    });
+    </script>"""
+    for html_file in out.rglob('*.html'):
+        if html_file == home_file:
+            continue
+        doc = html_file.read_text(encoding='utf-8')
+        # Razlicite vrste zaglavlja, bez prekidanja rada drugih obrazaca.
+        if '<header class="bg-white shadow-sm">' in doc:
+            doc, count = re.subn(r'<header class="bg-white shadow-sm">.*?</header>',
+                                 lambda m: shared_header, doc, count=1, flags=re.S)
+            if count:
+                doc = doc.replace('</body>', mobile_js + '\n</body>', 1)
+        elif '<header class="header">' in doc:
+            doc = doc.replace('<header class="header">',
+                              '<header class="header idealab-gift-header">', 1)
+            doc = doc.replace('<a class="button" href="#upit">',
+                              gift_desktop + '<a class="button" href="#upit">', 1)
+            doc = doc.replace('<button class="menu"',
+                              gift_mobile + '<button class="menu"', 1)
+        # Nemoj duplicirati CSS niti mijenjati vec generiranu stranicu.
+        if '<header' in doc and css_link not in doc:
+            doc = doc.replace('</head>', css_link + '\n</head>', 1)
+        html_file.write_text(doc, encoding='utf-8')
+    print('Poklon link: desktop natpis i mobilni pokloncic dodani u zaglavlje; svi HTML izvori ostaju netaknuti.')

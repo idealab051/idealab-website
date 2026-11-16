@@ -1,0 +1,28 @@
+/* Idealab – mali poklon bon u zaglavlju, kompatibilan s obje vrste nav izbornika. */
+.idealab-gift-header .idealab-gift-link{box-sizing:border-box;align-items:center;justify-content:center;gap:7px;flex:0 0 auto;min-height:40px;border:1px solid #bfdbfe;border-radius:9px;background:#eff6ff;color:#1e40af;text-decoration:none;font-family:Poppins,Arial,sans-serif;font-size:13px;line-height:1.2;font-weight:600;white-space:nowrap;padding:9px 12px;transition:background-color .2s,border-color .2s;}
+.idealab-gift-header .idealab-gift-link:hover{background:#dbeafe;border-color:#93c5fd;color:#1e40af;}
+.idealab-gift-header .idealab-gift-link:focus-visible{outline:3px solid #93c5fd;outline-offset:3px;}
+.idealab-gift-header .idealab-gift-link svg{display:block;flex:0 0 19px;color:#2563eb;}
+.idealab-gift-header .idealab-gift-link--desktop{display:inline-flex;}
+.idealab-gift-header .idealab-gift-link--mobile{display:none;}
+.idealab-gift-header .container > div:first-child{min-width:0;}
+@media (min-width:1280px){
+  .idealab-gift-header .navrow{gap:10px;}
+  .idealab-gift-header .navrow nav{gap:13px;}
+  .idealab-gift-header .navrow>.idealab-gift-link{min-height:39px;padding:8px 10px;}
+}
+@media (max-width:1279px){
+  .idealab-gift-header .idealab-gift-link--desktop{display:none!important;}
+  .idealab-gift-header .idealab-gift-link--mobile{display:inline-flex;min-height:38px;width:38px;height:38px;padding:7px;margin-left:auto;}
+  .idealab-gift-header #mobile-menu-button{margin-left:5px;flex:0 0 auto;}
+  .idealab-gift-header .navrow>.idealab-gift-link--mobile{margin-left:auto;}
+  .idealab-gift-header .navrow>.menu{flex:0 0 auto;}
+}
+@media (max-width:460px){
+  .idealab-gift-header .container > div:first-child a.text-2xl{font-size:clamp(15px,4.3vw,20px);white-space:nowrap;letter-spacing:-.025em;}
+  .idealab-gift-header .container{gap:3px;}
+  .idealab-gift-header .container .idealab-gift-link--mobile{width:34px;height:34px;min-height:34px;}
+  .idealab-gift-header .container #mobile-menu-button{margin-left:2px;}
+  .idealab-gift-header .navrow .brand{font-size:clamp(15px,4.1vw,20px);letter-spacing:-.03em;}
+}
+@media (prefers-reduced-motion:reduce){.idealab-gift-header .idealab-gift-link{transition:none;}}

@@ -378,10 +378,10 @@ form[data-idealab-form] button:disabled{opacity:.65;cursor:wait}
 </div>
 </div></template>
             <noscript><p class="text-gray-600 mt-4">Za prikaz aktualnog sadržaja omogućite JavaScript ili nam se javite na <a href="mailto:info@idealab.hr">info@idealab.hr</a>.</p></noscript>
-            <div class="text-center mt-12">
-                <a href="#blog" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition" hidden>
-                    Pogledajte sve članke
-                </a>
+            <div id="blog-more-wrap" class="text-center mt-12" hidden>
+                <button type="button" id="blog-more" aria-controls="blog-grid" aria-expanded="false" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
+                    Pogledaj sve članke
+                </button>
             </div>
         </div>
     </section>
@@ -675,7 +675,7 @@ form[data-idealab-form] button:disabled{opacity:.65;cursor:wait}
             });
         });
     </script>
-<script src="putovanja.js?v=aktualno3" defer></script>
+<script src="putovanja.js?v=blog6datum1" defer></script>
 <script src="naslovnice.js?v=1" defer></script>
 <script src="obrasci.js?v=turnstile1" defer></script>
 </body>

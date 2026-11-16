@@ -93,22 +93,36 @@
  const blogGrid=$('#blog-grid');
  if(blogGrid){
    const template=templateFor('blog-card-template');
-   const more=$('#blog .text-center.mt-12 a');
-   let blogs=[],shown=6;
+   const more=$('#blog-more');
+   const moreWrap=$('#blog-more-wrap');
+   const limit=6;
+   let blogs=[],expanded=false;
+   const dateKey=x=>{
+     const value=text(x.datum);
+     if(!/^\d{4}-\d{2}-\d{2}$/.test(value))return -Infinity;
+     const time=Date.parse(value+'T00:00:00Z');
+     return Number.isFinite(time) && new Date(time).toISOString().slice(0,10)===value ? time : -Infinity;
+   };
+   const syncMore=()=>{
+     if(moreWrap)moreWrap.hidden=blogs.length<=limit;
+     if(more){more.textContent=expanded?'Prikaži manje':'Pogledaj sve članke';more.setAttribute('aria-expanded',String(expanded));}
+   };
    const drawBlog=()=>{
-     if(!template){status(blogGrid,'Članci trenutno nisu dostupni.');return;}
-     if(!blogs.length){status(blogGrid,'Trenutno nema objavljenih članaka.');if(more)more.hidden=true;return;}
-     blogGrid.replaceChildren(...blogs.slice(0,shown).map(x=>{
+     if(!template){status(blogGrid,'Članci trenutno nisu dostupni.');if(moreWrap)moreWrap.hidden=true;return;}
+     if(!blogs.length){status(blogGrid,'Trenutno nema objavljenih članaka.');syncMore();return;}
+     blogGrid.replaceChildren(...blogs.slice(0,expanded?blogs.length:limit).map(x=>{
        const n=template.cloneNode(true);
        changeImage($('img',n),x.slika);
        if($('img',n))$('img',n).alt=text(x.naslov);
        const meta=$('.flex.items-center.text-sm.text-gray-500',n)?.querySelectorAll('span');
        if(meta?.length>=3){
-         if(/^\d{4}-\d\d-\d\d$/.test(text(x.datum))){
-           const [y,m,d]=x.datum.split('-').map(Number);
-           meta[0].textContent=new Intl.DateTimeFormat('hr-HR',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(y,m-1,d)))+'.';
-         }
+         const time=dateKey(x);
+         if(Number.isFinite(time)){
+           meta[0].textContent=new Intl.DateTimeFormat('hr-HR',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(time)).replace(/\.$/,'')+'.';
+         }else{meta[0].hidden=true;}
          meta[2].textContent=text(x.kategorija);
+         meta[2].hidden=!meta[2].textContent;
+         meta[1].hidden=meta[0].hidden||meta[2].hidden;
        }
        $('h3',n).textContent=text(x.naslov);
        $('p.text-gray-600',n).textContent=text(x.sazetak);
@@ -116,13 +130,14 @@
        return n;
      }));
      blogGrid.setAttribute('aria-busy','false');
-     if(more){more.hidden=shown>=blogs.length;more.parentElement.hidden=shown>=blogs.length;}
+     syncMore();
    };
    getJson('novosti.json').then(data=>{
      if(!Array.isArray(data))throw Error('Popis bloga nije valjan');
-     blogs=data.filter(x=>x && x.objavljeno===true && text(x.naslov) && text(x.id));
+     blogs=data.filter(x=>x && x.objavljeno===true && text(x.naslov) && text(x.id))
+       .sort((a,b)=>{const da=dateKey(a),db=dateKey(b);return da===db?0:da>db?-1:1;});
      drawBlog();
-   }).catch(e=>{console.error('Idealab blog:',e);status(blogGrid,'Članci trenutno nisu dostupni. Osvježite stranicu.');if(more)more.parentElement.hidden=true;});
-   if(more)more.addEventListener('click',e=>{e.preventDefault();shown+=3;drawBlog();});
+   }).catch(e=>{console.error('Idealab blog:',e);status(blogGrid,'Članci trenutno nisu dostupni. Osvježite stranicu.');if(moreWrap)moreWrap.hidden=true;});
+   if(more)more.addEventListener('click',()=>{expanded=!expanded;drawBlog();});
  }
 })();

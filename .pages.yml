@@ -294,3 +294,27 @@ content:
     label: Prikaži na naslovnici
     type: boolean
     description: Označi za prikaz. Prikazuje se prvih šest aktivnih objava redom iz CMS-a.
+
+- name: poklon-bonovi
+  label: Poklon bonovi – dizajni
+  type: file
+  path: poklon-bonovi.json
+  format: json
+  list: true
+  operations:
+    delete: false
+  fields:
+  - name: naziv
+    label: Naziv dizajna (prikazuje se ispod slike)
+    type: string
+    required: true
+  - name: slika
+    label: Fotografija predloška poklon bona
+    type: image
+    required: true
+    options:
+      media: fotografije
+  - name: aktivan
+    label: Prikaži dizajn na stranici
+    type: boolean
+    description: Isključi ako dizajn ne želiš privremeno prikazivati. Redoslijed mijenjaš pomicanjem stavki.

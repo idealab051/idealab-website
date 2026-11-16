@@ -228,7 +228,16 @@ def instagram_section():
         icon='fas fa-play' if reel else 'fab fa-instagram'; label='Reel' if reel else 'Objava'
         cards.append(f'''<a href="{e(href)}" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition focus-visible:ring-2 focus-visible:ring-blue-600" aria-label="{e(title)} – otvori na Instagramu (nova kartica)"><div class="relative overflow-hidden" style="aspect-ratio:4/5"><img src="{e(picture)}" alt="{e(title)}" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" loading="lazy" decoding="async"><span class="absolute top-3 right-3 bg-white text-blue-800 rounded-full w-9 h-9 flex items-center justify-center shadow" aria-hidden="true"><i class="{icon}"></i></span></div><div class="p-3 sm:p-4"><p class="text-xs text-blue-700 mb-1 font-medium">{label}</p><h3 class="font-semibold text-gray-800 text-sm sm:text-base leading-snug">{e(title)}</h3></div></a>''')
         if len(cards)==6:break
-    grid='<div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 max-w-5xl mx-auto mb-9">'+''.join(cards)+'</div>' if cards else ''
+    # With an odd number, center the last card on phones rather than leaving it at the left.
+    if len(cards) % 2:
+        cards[-1]=cards[-1].replace('class="group block ', 'class="group block col-span-2 w-1/2 mx-auto lg:col-span-1 lg:w-full ', 1)
+    # Four posts make a balanced 4-across desktop / 2-by-2 mobile gallery.
+    # Other counts keep their comfortable widths; with six, use two rows of three.
+    if len(cards)==4:layout='lg:grid-cols-4 max-w-6xl'
+    elif len(cards)>=3:layout='lg:grid-cols-3 max-w-5xl'
+    elif len(cards)==2:layout='lg:grid-cols-2 max-w-3xl'
+    else:layout='lg:grid-cols-1 max-w-sm'
+    grid=f'<div class="grid grid-cols-2 {layout} gap-3 sm:gap-6 mx-auto mb-9">'+''.join(cards)+'</div>' if cards else ''
     return '<section id="instagram" class="py-16 bg-white"><div class="container mx-auto px-4"><div class="text-center mb-9"><p class="text-sm font-semibold tracking-wider text-blue-600 mb-3"><i class="fab fa-instagram mr-2" aria-hidden="true"></i>IDEALAB NA INSTAGRAMU</p><h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Putovanja kroz naš objektiv</h2><p class="text-gray-600 max-w-2xl mx-auto">Stvarni trenuci, nova otkrića i priče s naših putovanja.</p></div>'+grid+'<div class="text-center"><a class="inline-flex items-center justify-center gap-2 border border-blue-700 text-blue-700 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition" href="https://www.instagram.com/idealab.travel.tours/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i> Pratite nas na Instagramu</a></div></div></section>\n'
 
 index=(ROOT/'index.html').read_text(encoding='utf-8')
@@ -271,4 +280,5 @@ if not (OUT/'404.html').exists():
     notfound=page('Stranica nije pronađena','Ova stranica nije dostupna.','/404.html','/seo-podijeli.jpg','<main class="max-w-3xl mx-auto px-5 py-20 text-center"><h1 class="text-3xl font-bold text-blue-900 mb-4">Stranica nije pronađena</h1><p class="mb-6">Možda je ponuda završila ili je poveznica promijenjena.</p>'+button('/','Povratak na naslovnicu')+'</main>')
     write('404.html',notfound.replace('content="index,follow"','content="noindex,follow"'))
 print(f'Idealab: {len(trips)} putovanja, {len(posts)} članaka; izlaz: {OUT.name}')
+
 # Aktivacija automatskog Cloudflare builda

@@ -271,3 +271,4 @@ if not (OUT/'404.html').exists():
     notfound=page('Stranica nije pronađena','Ova stranica nije dostupna.','/404.html','/seo-podijeli.jpg','<main class="max-w-3xl mx-auto px-5 py-20 text-center"><h1 class="text-3xl font-bold text-blue-900 mb-4">Stranica nije pronađena</h1><p class="mb-6">Možda je ponuda završila ili je poveznica promijenjena.</p>'+button('/','Povratak na naslovnicu')+'</main>')
     write('404.html',notfound.replace('content="index,follow"','content="noindex,follow"'))
 print(f'Idealab: {len(trips)} putovanja, {len(posts)} članaka; izlaz: {OUT.name}')
+# Aktivacija automatskog Cloudflare builda

@@ -20,59 +20,24 @@
         }
         
         .hero {
-            --hero-photo: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
-            position: relative;
-            isolation: isolate;
-            overflow: hidden;
-            background: #263447;
-            min-height: 80vh;
+            position: relative; isolation: isolate; overflow: hidden;
+            background: #263447; min-height: 80vh;
         }
-        .hero::before, .hero::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
-        .hero::before {
-            z-index: -2;
-            background-image: var(--hero-photo);
-            background-size: cover;
-            background-position: center;
-            transform-origin: center;
-            animation: idealab-hero-motion 18s ease-in-out infinite alternate;
-        }
-        .hero::after {
-            z-index: -1;
-            background: linear-gradient(180deg, rgba(15, 23, 35, 0.30) 0%, rgba(15, 23, 35, 0.52) 48%, rgba(15, 23, 35, 0.40) 100%);
-        }
-        @keyframes idealab-hero-motion {
-            from { transform: scale(1); }
-            to { transform: scale(1.10); }
-        }
-        .hero.motion-paused::before { animation-play-state: paused; }
-        .hero-motion-toggle {
-            position: absolute;
-            right: 16px;
-            bottom: 16px;
-            z-index: 2;
-            display: inline-grid;
-            place-items: center;
-            width: 38px;
-            height: 38px;
-            border: 1px solid rgba(255,255,255,.65);
-            border-radius: 50%;
-            background: rgba(15,23,35,.38);
-            color: white;
-            font: 18px/1 Arial, sans-serif;
-            cursor: pointer;
-        }
-        .hero-motion-toggle:hover { background: rgba(15,23,35,.68); }
-        .hero-motion-toggle:focus-visible { outline: 3px solid white; outline-offset: 3px; }
-        @media (prefers-reduced-motion: reduce) {
-            .hero::before { animation: none; }
-            .hero-motion-toggle { display: none; }
-        }
-        
+        .hero-photo-layer { position:absolute; inset:0; z-index:-2; opacity:0;
+            pointer-events:none; overflow:hidden; transition:opacity 1s ease; }
+        .hero-photo-layer.is-current { opacity:1; }
+        .hero-photo-layer img { display:block; width:100%; height:100%; object-fit:cover; object-position:center; }
+        .hero-photo-layer.is-current img { animation:idealab-hero-motion 10s linear both; }
+        .hero::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:-1;
+            background:linear-gradient(180deg,rgba(15,23,35,.30),rgba(15,23,35,.52) 48%,rgba(15,23,35,.40)); }
+        @keyframes idealab-hero-motion { from { transform:scale(1); } to { transform:scale(1.12); } }
+        .hero.motion-paused .hero-photo-layer img { animation-play-state:paused; }
+        .hero-motion-toggle { position:absolute;right:16px;bottom:16px;z-index:2;display:inline-grid;place-items:center;width:38px;height:38px;border:1px solid rgba(255,255,255,.65);border-radius:50%;background:rgba(15,23,35,.38);color:white;font:18px/1 Arial,sans-serif;cursor:pointer; }
+        .hero-motion-toggle:hover { background:rgba(15,23,35,.68); }
+        .hero-motion-toggle:focus-visible { outline:3px solid white;outline-offset:3px; }
+        @media (prefers-reduced-motion:reduce) { .hero-photo-layer {transition:none;} .hero-photo-layer.is-current img {animation:none;} .hero-motion-toggle {display:none;} }
+        .idealab-trip-date { display:table; max-width:100%; margin:0 0 8px; padding:3px 9px; background:#2563eb; color:#fff; border-radius:5px; font-size:13px; font-weight:500; line-height:1.5; }
+
         .hero h1, .hero p {
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
         }
@@ -166,7 +131,9 @@ form[data-idealab-form] button:disabled{opacity:.65;cursor:wait}
     </header>
 
     <!-- Hero Section -->
-    <section class="hero flex items-center justify-center text-center text-white">
+    <section class="hero flex items-center justify-center text-center text-white" data-idealab-hero="slideshow">
+        <div class="hero-photo-layer" aria-hidden="true"></div>
+        <div class="hero-photo-layer" aria-hidden="true"></div>
         <div class="container mx-auto px-4">
             <h1 class="text-4xl md:text-6xl font-bold mb-6">Vaša putovanja, naša inspiracija</h1>
             <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Otkrijte svijet s ideaLAB travel&tours - vašim pouzdanim vodičem kroz nezaboravna iskustva</p>
@@ -923,7 +890,8 @@ form[data-idealab-form] button:disabled{opacity:.65;cursor:wait}
             });
         });
     </script>
-<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=idealab051/idealab-space" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p><script src="putovanja.js" defer></script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=idealab051/idealab-space" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p><script src="putovanja.js?v=datumi2" defer></script>
+<script src="naslovnice.js?v=1" defer></script>
 <script src="obrasci.js?v=turnstile1" defer></script>
 </body>
 </html>

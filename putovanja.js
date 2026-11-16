@@ -24,18 +24,9 @@
    if(url)img.src=url; else if (!text(raw)) img.src=imgFallback;
    img.loading='lazy';
  }
- function dateAfterTitle(h3,date,isFeatured){
-   if(!h3 || !text(date))return;
-   // Jedina nova stavka u izvornom izgledu: mali redak datuma ispod naslova.
-   const p=document.createElement('p');
-   p.className='text-sm text-gray-600 mb-2';
-   p.textContent=text(date);
-   if(isFeatured)h3.classList.replace('mb-2','mb-1');
-   h3.parentElement.insertBefore(p,isFeatured?h3.nextSibling:h3.parentElement.nextSibling);
- }
  function addDate(card,trip,featured){
-   const title=$('h3',card);if(!text(trip.termin))return;
-   const p=document.createElement('p');p.className='text-sm text-gray-600 mb-2';p.textContent=text(trip.termin);
+   const title=$('h3',card);if(!title || !text(trip.termin))return;
+   const p=document.createElement('p');p.className='idealab-trip-date';p.textContent=text(trip.termin);
    if(featured){title.classList.replace('mb-2','mb-1');title.after(p);}
    else{title.parentElement.after(p);}
  }
@@ -127,35 +118,4 @@
    }).catch(e=>console.error('Idealab blog: ostaje originalni izgled.',e));
    if(more)more.addEventListener('click',e=>{e.preventDefault();shown+=3;drawBlog();});
  }
- // Rotiraju se samo fotografije koje je vlasnica sama odabrala u CMS-u.
- const hero=$('.hero');
- const motionButton=$('.hero-motion-toggle');
- if(hero && motionButton)motionButton.addEventListener('click',()=>{
-   const paused=hero.classList.toggle('motion-paused');
-   const label=paused?'Pokreni animaciju pozadine':'Pauziraj animaciju pozadine';
-   motionButton.textContent=paused?'▶':'Ⅱ';
-   motionButton.setAttribute('aria-pressed',String(paused));
-   motionButton.setAttribute('aria-label',label);
-   motionButton.title=label;
- });
- if(hero)getJson('pozadine.json').then(items=>{
-   if(!Array.isArray(items))return;
-   const photos=items.filter(x=>x && x.aktivna===true).map(x=>media(x.slika)).filter(Boolean);
-   if(!photos.length)return; // izvorna slika ostaje ako je galerija prazna
-   // Svako osvježavanje u istoj kartici prikazuje sljedeću aktivnu fotografiju.
-   // Početna je prva aktivna fotografija; pohrana je odvojena za svaki web/putanju.
-   const storageKey='idealab.hero.last.v2:'+location.pathname;
-   const unique=[...new Set(photos)];
-   let previous='';
-   try { previous=history.state?.idealabHeroLast||''; } catch(e) {}
-   if(!previous)try { previous=sessionStorage.getItem(storageKey)||''; } catch(e) {}
-   if(!previous)try { previous=localStorage.getItem(storageKey)||''; } catch(e) {}
-   const previousIndex=unique.indexOf(previous);
-   const chosen=unique[previousIndex<0?0:(previousIndex+1)%unique.length];
-   try { history.replaceState({...history.state,idealabHeroLast:chosen},''); } catch(e) {}
-   try { sessionStorage.setItem(storageKey,chosen); } catch(e) {}
-   try { localStorage.setItem(storageKey,chosen); } catch(e) {}
-   const safe=chosen.replace(/"/g,'%22');
-   hero.style.setProperty('--hero-photo', 'url("'+safe+'")');
- }).catch(e=>console.warn('Idealab pozadine: ostaje originalna fotografija.',e));
 })();

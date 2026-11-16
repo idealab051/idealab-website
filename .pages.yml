@@ -140,3 +140,24 @@ content:
     label: Uključi fotografiju u izmjenu
     type: boolean
     description: Kad isključiš, ta fotografija se neće prikazivati.
+
+- name: naslovnice-usluga
+  label: Naslovne fotografije – DesignTravel i EduTravel
+  type: file
+  path: naslovnice.json
+  format: json
+  operations:
+    delete: false
+  fields:
+  - name: design
+    label: DesignTravel – naslovna fotografija
+    type: image
+    required: true
+    options:
+      media: fotografije
+  - name: edu
+    label: EduTravel – naslovna fotografija
+    type: image
+    required: true
+    options:
+      media: fotografije

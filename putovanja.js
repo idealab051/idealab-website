@@ -32,21 +32,19 @@
  }
  function prepareLink(card,trip,featured){
    const a=$('a',card);if(!a)return;
-   const pdf=media(trip.pdf,true);
    const i=$('i',a);
-   a.textContent=pdf?(featured?'Detalji ':'Program '):'Potraži '; 
-   if(i)a.append(i);
-   a.href=pdf || '#kontakt';
-   if(pdf){a.target='_blank';a.rel='noopener noreferrer';}
-   else{
+   const page=text(trip.stranica);
+   const pdf=media(trip.pdf,true);
+   if(/^\/putovanja\/[a-z0-9-]+\/$/.test(page)){
+     a.textContent='Detalji '; if(i)a.append(i); a.href=page;
      a.removeAttribute('target');a.removeAttribute('rel');
-     a.addEventListener('click',e=>{
-       e.preventDefault();
-       const subject=$('#subject'),message=$('#message');
-       if(subject)subject.value='upit';
-       if(message && (!message.value.trim() || /^Zanima me putovanje: [^\n]+\n?$/.test(message.value)))message.value='Zanima me putovanje: '+text(trip.naslov)+'\n';
-       const contact=$('#kontakt');if(contact)contact.scrollIntoView({behavior:'smooth'});
-     });
+   }else{
+     a.textContent=pdf?'Program ':'Potraži ';if(i)a.append(i);a.href=pdf||'#kontakt';
+     if(pdf){a.target='_blank';a.rel='noopener noreferrer';}
+     else{a.removeAttribute('target');a.removeAttribute('rel');a.addEventListener('click',()=>{
+       const subject=$('#subject'),message=$('#message');if(subject)subject.value='upit';
+       if(message&&!message.value.trim())message.value='Zanima me putovanje: '+text(trip.naslov)+'\n';
+     });}
    }
  }
  function card(t,featured,template){
@@ -88,7 +86,7 @@
      const active=$('.filter-btn.active');
      const val=active?.dataset.filter||'all';
      destinations.querySelectorAll('.destination-item').forEach(x=>{x.style.display=val==='all'||x.dataset.category===val?'block':'none';});
-   }).catch(e=>{console.error('Idealab putovanja:',e); const msg='Aktualna putovanja trenutno nisu dostupna. Osvježite stranicu ili nam se javite na info@idealab.hr.';status(featured,msg);status(destinations,msg);});
+   }).catch(e=>{console.error('Idealab putovanja:',e); const msg='Aktualna putovanja trenutno nisu dostupna. Osvježite stranicu ili nam se javite na info@idealab.hr.';if(!featured.querySelector('.offer-card'))status(featured,msg);if(!destinations.querySelector('.destination-item'))status(destinations,msg);});
  }
  const blogGrid=$('#blog-grid');
  if(blogGrid){
@@ -126,7 +124,7 @@
        }
        $('h3',n).textContent=text(x.naslov);
        $('p.text-gray-600',n).textContent=text(x.sazetak);
-       const a=$('a',n);if(a)a.href='clanak.html?id='+encodeURIComponent(text(x.id));
+       const a=$('a',n);if(a){const page=text(x.stranica);a.href=/^\/blog\/[a-z0-9-]+\/$/.test(page)?page:'clanak.html?id='+encodeURIComponent(text(x.id));}
        return n;
      }));
      blogGrid.setAttribute('aria-busy','false');
@@ -137,7 +135,7 @@
      blogs=data.filter(x=>x && x.objavljeno===true && text(x.naslov) && text(x.id))
        .sort((a,b)=>{const da=dateKey(a),db=dateKey(b);return da===db?0:da>db?-1:1;});
      drawBlog();
-   }).catch(e=>{console.error('Idealab blog:',e);status(blogGrid,'Članci trenutno nisu dostupni. Osvježite stranicu.');if(moreWrap)moreWrap.hidden=true;});
+   }).catch(e=>{console.error('Idealab blog:',e);if(!blogGrid.querySelector('h3'))status(blogGrid,'Članci trenutno nisu dostupni. Osvježite stranicu.');if(moreWrap)moreWrap.hidden=true;});
    if(more)more.addEventListener('click',()=>{expanded=!expanded;drawBlog();});
  }
 })();

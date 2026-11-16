@@ -124,7 +124,7 @@ def make(root, out, page):
   </main>'''
     result = page('Poklon bonovi – poklonite putovanje i uspomene', 'Personalizirani poklon bonovi za rođendane, diplome, vjenčanja i obljetnice. Izaberite dizajn, vrijednost i posvetu – Idealab Travel & Tours Rijeka.', '/poklon-bonovi.html', vouchers[4]['image'] if len(vouchers)>4 else vouchers[0]['image'], main)
     result = result.replace('</head>', '<link rel="stylesheet" href="/poklon-bonovi.css?v=2"></head>')
-    result = result.replace('</body>', '<script src="/poklon-bonovi.js?v=1" defer></script><script src="/obrasci.js?v=turnstile1" defer></script></body>')
+    result = result.replace('</body>', '<script src="/poklon-bonovi.js?v=1" defer></script><script src="/obrasci.js?v=turnstile2" defer></script></body>')
     (out / 'poklon-bonovi.html').write_text(result, encoding='utf-8')
 
     promo = f'''<section id="poklon-bonovi-najava" class="py-16 bg-white" aria-labelledby="gift-teaser-heading"><div class="container mx-auto px-4"><div class="gift-promo" style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,5vw,60px);align-items:center;width:100%;max-width:none;box-sizing:border-box;margin:auto;background:linear-gradient(135deg,#eef4ff,#f8fbff);border-radius:24px;padding:clamp(26px,5vw,55px);overflow:hidden">

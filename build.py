@@ -282,3 +282,7 @@ if not (OUT/'404.html').exists():
 print(f'Idealab: {len(trips)} putovanja, {len(posts)} članaka; izlaz: {OUT.name}')
 
 # Aktivacija automatskog Cloudflare builda
+
+# Poklon bonovi – zaseban modul; izvorne putničke podatke i dizajn ne mijenja.
+from gift_build import make as build_gifts
+build_gifts(ROOT, OUT, page)

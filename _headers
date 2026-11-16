@@ -1,0 +1,6 @@
+# Prevent test and deployment hosts from appearing in search results.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex

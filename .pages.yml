@@ -13,6 +13,13 @@ media:
   rename: safe
   extensions:
   - pdf
+- name: pravni-pdf
+  label: Pravni PDF dokumenti
+  input: dokumenti
+  output: /dokumenti
+  rename: safe
+  extensions:
+  - pdf
 content:
 - name: putovanja
   label: Putovanja – uređivanje na jednom mjestu
@@ -140,7 +147,6 @@ content:
     label: Uključi fotografiju u izmjenu
     type: boolean
     description: Kad isključiš, ta fotografija se neće prikazivati.
-
 - name: naslovnice-usluga
   label: Naslovne fotografije – DesignTravel i EduTravel
   type: file
@@ -161,3 +167,59 @@ content:
     required: true
     options:
       media: fotografije
+- name: pravna-dokumentacija
+  label: Pravna dokumentacija
+  type: file
+  path: pravna-dokumentacija.json
+  format: json
+  operations:
+    delete: false
+  fields:
+  - name: uvjeti_pdf
+    label: Opći uvjeti poslovanja i putovanja – PDF
+    type: file
+    required: true
+    options:
+      media: pravni-pdf
+      extensions:
+      - pdf
+  - name: uvjeti_opis
+    label: Opći uvjeti poslovanja i putovanja – opis i datum primjene
+    type: text
+    required: true
+  - name: obrazac_pdf
+    label: Standardni informativni obrazac B – PDF
+    type: file
+    required: true
+    options:
+      media: pravni-pdf
+      extensions:
+      - pdf
+  - name: obrazac_opis
+    label: Standardni informativni obrazac B – opis i datum primjene
+    type: text
+    required: true
+  - name: osiguranje_pdf
+    label: Informacije o osiguranju putovanja – PDF
+    type: file
+    required: true
+    options:
+      media: pravni-pdf
+      extensions:
+      - pdf
+  - name: osiguranje_opis
+    label: Informacije o osiguranju putovanja – opis i datum primjene
+    type: text
+    required: true
+  - name: arhiva_pdf
+    label: Prethodni Opći uvjeti putovanja – 2026. – PDF
+    type: file
+    required: true
+    options:
+      media: pravni-pdf
+      extensions:
+      - pdf
+  - name: arhiva_opis
+    label: Prethodni Opći uvjeti putovanja – 2026. – opis i datum primjene
+    type: text
+    required: true

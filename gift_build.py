@@ -164,10 +164,15 @@ def make(root, out, page):
     gift_desktop = ('<a class="idealab-gift-link idealab-gift-link--desktop" '
                     'href="/poklon-bonovi.html" title="Poklon bonovi">'
                     + gift_icon + '<span>Poklon bon</span></a>')
-    gift_mobile = ('<a class="idealab-gift-link idealab-gift-link--mobile" '
-                   'href="/poklon-bonovi.html" title="Poklon bonovi" aria-label="Poklon bonovi">'
-                   + gift_icon + '</a>')
-    css_link = '<link rel="stylesheet" href="/idealab-poklon-link.css?v=1">'
+    # Desktop: postojeći gumb ostaje nepromijenjen.
+    # Mobilni prikaz: naziv i ikonica nalaze se unutar hamburger izbornika.
+    gift_menu_mobile = ('<a class="idealab-gift-menu-link text-blue-800 font-medium py-2 border-b" '
+                        'href="/poklon-bonovi.html" aria-label="Poklon bon">'
+                        + gift_icon + '<span>Poklon bon</span></a>')
+    gift_nav_mobile = ('<a class="idealab-gift-nav-item--mobile" '
+                       'href="/poklon-bonovi.html" aria-label="Poklon bon">'
+                       + gift_icon + '<span>Poklon bon</span></a>')
+    css_link = '<link rel="stylesheet" href="/idealab-poklon-link.css?v=3">'
 
     home_file = out / 'index.html'
     homepage = home_file.read_text(encoding='utf-8')
@@ -180,8 +185,10 @@ def make(root, out, page):
     if home_cta not in homepage or '<button id="mobile-menu-button"' not in homepage:
         raise ValueError('Nije pronadjen desktop ili mobilni izbornik na naslovnici')
     homepage = homepage.replace(home_cta, home_cta + gift_desktop, 1)
-    homepage = homepage.replace('<button id="mobile-menu-button"',
-                                gift_mobile + '<button id="mobile-menu-button"', 1)
+    menu_contact = '<a href="#kontakt" class="text-gray-700 py-2 border-b">Kontakt</a>'
+    if menu_contact not in homepage:
+        raise ValueError('Nije pronađen Kontakt u mobilnom izborniku naslovnice')
+    homepage = homepage.replace(menu_contact, menu_contact + gift_menu_mobile, 1)
     homepage = homepage.replace('</head>', css_link + '\n</head>', 1)
     home_file.write_text(homepage, encoding='utf-8')
 
@@ -233,10 +240,14 @@ def make(root, out, page):
                               '<header class="header idealab-gift-header">', 1)
             doc = doc.replace('<a class="button" href="#upit">',
                               gift_desktop + '<a class="button" href="#upit">', 1)
-            doc = doc.replace('<button class="menu"',
-                              gift_mobile + '<button class="menu"', 1)
+            nav_close = '</nav>'
+            nav_start = doc.find('<nav id="nav">')
+            if nav_start >= 0:
+                nav_end = doc.find(nav_close, nav_start)
+                if nav_end >= 0:
+                    doc = doc[:nav_end] + gift_nav_mobile + doc[nav_end:]
         # Nemoj duplicirati CSS niti mijenjati vec generiranu stranicu.
         if '<header' in doc and css_link not in doc:
             doc = doc.replace('</head>', css_link + '\n</head>', 1)
         html_file.write_text(doc, encoding='utf-8')
-    print('Poklon link: desktop natpis i mobilni pokloncic dodani u zaglavlje; svi HTML izvori ostaju netaknuti.')
+    print('Poklon link: desktop gumb ostaje; na mobitelu Poklon bon nalazi se u izborniku.')

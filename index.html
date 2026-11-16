@@ -310,14 +310,34 @@ form[data-idealab-form] button:disabled{opacity:.65;cursor:wait}
         </div>
     </section>
 
-    <!-- Newsletter: prijave će biti dostupne nakon povezivanja servisa i dvostruke potvrde. -->
+    <!-- Newsletter: Brevo hosted form, loaded only on request. -->
     <section class="py-16 bg-blue-800 text-white" id="newsletter">
       <div class="container mx-auto px-4"><div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Budite upoznati s našim ponudama</h2>
-        <p class="text-blue-100 mb-5">Uskoro pokrećemo Idealab newsletter s novim putovanjima, inspiracijom i putničkim pričama.</p>
-        <a href="#blog" class="inline-block bg-white text-blue-800 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition">Istražite naš blog</a>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Budite među prvima</h2>
+        <p class="text-blue-100 mb-5">Nova putovanja, posebne ponude i putničke priče – izravno u vaš e-mail sandučić.</p>
+        <button id="idealab-newsletter-open" type="button" aria-expanded="false" aria-controls="idealab-newsletter-form" class="inline-block bg-white text-blue-800 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition">Prijavite se na newsletter</button>
+        <p class="text-sm text-blue-100 mt-4">Obrazac za prijavu pruža Brevo. Više u <a class="underline" href="politika-privatnosti.html">Politici privatnosti i kolačića</a>.</p>
+        <div id="idealab-newsletter-form" hidden style="margin-top:16px;">
+          <iframe id="idealab-newsletter-frame" title="Idealab newsletter – prijava" data-src="https://62214346.sibforms.com/v2/serve/MUIFALkDqwlRe6_j4SGDdsjsH8HeZV9aFr4KyigMiCCrNM5cnBp2WAdI5QLFCJDgVTvbAasnRv4sV6GLm81R0KYhiS9S5eIfi5ou_bScWE3LJaJ2y5WKOUMZ8EzwUhxjwPThEJ7vf_FOfsMI95vmJblzL2l00bQsfmXOLKnGR4syprwmG0dNlQciWYGwjgu_9Ox9q8W3eo7A_G1yAA==" width="540" height="780" style="display:block;margin:0 auto;border:0;width:100%;max-width:540px;height:780px;" scrolling="auto"></iframe>
+          <p class="text-sm text-blue-100 mt-3">Ako se obrazac ne prikazuje, <a href="https://62214346.sibforms.com/v2/serve/MUIFALkDqwlRe6_j4SGDdsjsH8HeZV9aFr4KyigMiCCrNM5cnBp2WAdI5QLFCJDgVTvbAasnRv4sV6GLm81R0KYhiS9S5eIfi5ou_bScWE3LJaJ2y5WKOUMZ8EzwUhxjwPThEJ7vf_FOfsMI95vmJblzL2l00bQsfmXOLKnGR4syprwmG0dNlQciWYGwjgu_9Ox9q8W3eo7A_G1yAA==" target="_blank" rel="noopener noreferrer" class="underline">otvorite ga u novoj kartici</a>.</p>
+        </div>
+        <noscript><p><a href="https://62214346.sibforms.com/v2/serve/MUIFALkDqwlRe6_j4SGDdsjsH8HeZV9aFr4KyigMiCCrNM5cnBp2WAdI5QLFCJDgVTvbAasnRv4sV6GLm81R0KYhiS9S5eIfi5ou_bScWE3LJaJ2y5WKOUMZ8EzwUhxjwPThEJ7vf_FOfsMI95vmJblzL2l00bQsfmXOLKnGR4syprwmG0dNlQciWYGwjgu_9Ox9q8W3eo7A_G1yAA==" class="underline">Otvorite obrazac za prijavu na newsletter</a>.</p></noscript>
       </div></div>
     </section>
+    <script>
+      (function(){
+        var button=document.getElementById('idealab-newsletter-open');
+        var panel=document.getElementById('idealab-newsletter-form');
+        var frame=document.getElementById('idealab-newsletter-frame');
+        button.addEventListener('click',function(){
+          if(!frame.hasAttribute('src')) frame.setAttribute('src',frame.getAttribute('data-src'));
+          var opening=panel.hidden;
+          panel.hidden=!opening;
+          button.setAttribute('aria-expanded',String(opening));
+          button.textContent=opening?'Zatvori obrazac':'Prijavite se na newsletter';
+        });
+      })();
+    </script>
 
     <!-- Contact Section -->
     <section id="kontakt" class="py-16 bg-white">

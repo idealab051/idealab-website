@@ -1,0 +1,296 @@
+media:
+- name: fotografije
+  label: Fotografije putovanja i bloga
+  input: images
+  output: /images
+  rename: safe
+  categories:
+  - image
+- name: programi
+  label: PDF programi putovanja
+  input: putovanja
+  output: /putovanja
+  rename: safe
+  extensions:
+  - pdf
+- name: pravni-pdf
+  label: Pravni PDF dokumenti
+  input: dokumenti
+  output: /dokumenti
+  rename: safe
+  extensions:
+  - pdf
+content:
+- name: putovanja
+  label: Putovanja – uređivanje na jednom mjestu
+  type: file
+  path: putovanja.json
+  format: json
+  list: true
+  operations:
+    delete: false
+  fields:
+  - name: naslov
+    label: Naziv putovanja
+    type: string
+    required: true
+  - name: termin
+    label: Datum putovanja (ispod naslova)
+    type: string
+    description: Npr. 06.–18.03.2027. Ako nije potvrđen, ostavi prazno.
+  - name: opis
+    label: Kratki opis
+    type: text
+    required: true
+  - name: cijena
+    label: Cijena (tekst)
+    type: string
+    description: Npr. od 790 € ili na upit
+  - name: slika
+    label: Fotografija putovanja
+    type: image
+    options:
+      media: fotografije
+  - name: pdf
+    label: PDF program putovanja (neobvezno)
+    type: file
+    options:
+      media: programi
+      extensions:
+      - pdf
+    description: PDF je neobvezan; putnik ga može preuzeti na zasebnoj stranici putovanja.
+  - name: url_naziv
+    label: URL naziv (neobvezno)
+    type: string
+    description: Npr. japan-iza-vrata-tradicije. Ako je prazno, nastaje iz naslova. Zadrži isti URL kad mijenjaš naslov.
+  - name: detaljni_opis
+    label: Detaljan opis putovanja (neobvezno)
+    type: rich-text
+    options:
+      format: html
+      media: fotografije
+      switcher: false
+  - name: program
+    label: Program putovanja po danima (neobvezno)
+    type: rich-text
+    options:
+      format: html
+      media: fotografije
+      switcher: false
+  - name: ukljuceno
+    label: Što je uključeno u cijenu (neobvezno)
+    type: rich-text
+    options:
+      format: html
+      media: fotografije
+      switcher: false
+  - name: nije_ukljuceno
+    label: Što nije uključeno u cijenu (neobvezno)
+    type: rich-text
+    options:
+      format: html
+      media: fotografije
+      switcher: false
+  - name: kategorija
+    label: Kategorija (kao na originalnoj stranici)
+    type: select
+    required: true
+    options:
+      values:
+      - name: europa
+        label: Europska putovanja
+      - name: hrvatska
+        label: Hrvatska
+      - name: advent
+        label: Advent
+      - name: citybreak
+        label: City break
+      - name: tematske
+        label: Tematske ture
+      - name: daleka
+        label: Daleka putovanja
+  - name: izdvojeno
+    label: Izdvojeno na naslovnici (označi najviše 3)
+    type: boolean
+  - name: vidljivo
+    label: Prikaži putovanje na stranici
+    type: boolean
+- name: novosti
+  label: Blog i novosti – puni članci
+  type: file
+  path: novosti.json
+  format: json
+  list: true
+  operations:
+    delete: false
+  fields:
+  - name: id
+    label: ID članka (automatski)
+    type: uuid
+    options:
+      editable: false
+  - name: naslov
+    label: Naslov
+    type: string
+    required: true
+  - name: url_naziv
+    label: URL naziv članka (neobvezno)
+    type: string
+    description: Ako je prazno, nastaje iz naslova. Zadrži isti URL kad mijenjaš naslov.
+  - name: datum
+    label: Datum objave
+    type: date
+    required: true
+  - name: kategorija
+    label: Kategorija članka
+    type: string
+  - name: sazetak
+    label: Uvod za karticu
+    type: text
+    required: true
+  - name: slika
+    label: Naslovna fotografija
+    type: image
+    options:
+      media: fotografije
+  - name: tekst
+    label: Cijeli članak – piši ovdje
+    type: rich-text
+    required: true
+    options:
+      format: html
+      media: fotografije
+      switcher: false
+  - name: objavljeno
+    label: Objavi članak
+    type: boolean
+- name: pozadine
+  label: Galerija pozadinskih fotografija
+  type: file
+  path: pozadine.json
+  format: json
+  list: true
+  operations:
+    delete: false
+  fields:
+  - name: slika
+    label: Odaberi ili učitaj pozadinsku fotografiju
+    type: image
+    required: true
+    options:
+      media: fotografije
+  - name: aktivna
+    label: Uključi fotografiju u izmjenu
+    type: boolean
+    description: Kad isključiš, ta fotografija se neće prikazivati.
+- name: naslovnice-usluga
+  label: Naslovne fotografije – DesignTravel i EduTravel
+  type: file
+  path: naslovnice.json
+  format: json
+  operations:
+    delete: false
+  fields:
+  - name: design
+    label: DesignTravel – naslovna fotografija
+    type: image
+    required: true
+    options:
+      media: fotografije
+  - name: edu
+    label: EduTravel – naslovna fotografija
+    type: image
+    required: true
+    options:
+      media: fotografije
+- name: pravna-dokumentacija
+  label: Pravna dokumentacija
+  type: file
+  path: pravna-dokumentacija.json
+  format: json
+  operations:
+    delete: false
+  fields:
+  - name: uvjeti_pdf
+    label: Opći uvjeti poslovanja i putovanja – PDF
+    type: file
+    required: true
+    options:
+      media: pravni-pdf
+      extensions:
+      - pdf
+  - name: uvjeti_opis
+    label: Opći uvjeti poslovanja i putovanja – opis i datum primjene
+    type: text
+    required: true
+  - name: obrazac_pdf
+    label: Standardni informativni obrazac B – PDF
+    type: file
+    required: true
+    options:
+      media: pravni-pdf
+      extensions:
+      - pdf
+  - name: obrazac_opis
+    label: Standardni informativni obrazac B – opis i datum primjene
+    type: text
+    required: true
+  - name: osiguranje_pdf
+    label: Informacije o osiguranju putovanja – PDF
+    type: file
+    required: true
+    options:
+      media: pravni-pdf
+      extensions:
+      - pdf
+  - name: osiguranje_opis
+    label: Informacije o osiguranju putovanja – opis i datum primjene
+    type: text
+    required: true
+  - name: arhiva_pdf
+    label: Prethodni Opći uvjeti putovanja – 2026. – PDF
+    type: file
+    required: true
+    options:
+      media: pravni-pdf
+      extensions:
+      - pdf
+  - name: arhiva_opis
+    label: Prethodni Opći uvjeti putovanja – 2026. – opis i datum primjene
+    type: text
+    required: true
+- name: instagram-objave
+  label: Instagram – izdvojene objave
+  type: file
+  path: instagram.json
+  format: json
+  list: true
+  fields:
+  - name: naslov
+    label: Kratki naslov objave
+    type: string
+    required: true
+  - name: slika
+    label: Fotografija ili naslovnica Reelsa
+    type: image
+    required: true
+    options:
+      media: fotografije
+  - name: poveznica
+    label: Poveznica na Instagram objavu ili Reel
+    type: string
+    required: true
+    description: Kopiraj poveznicu s Instagrama (https://www.instagram.com/p/... ili /reel/...).
+  - name: vrsta
+    label: Vrsta objave
+    type: select
+    options:
+      values:
+      - name: fotografija
+        label: Fotografija / objava
+      - name: reel
+        label: Reel / video
+  - name: aktivna
+    label: Prikaži na naslovnici
+    type: boolean
+    description: Označi za prikaz. Prikazuje se prvih šest aktivnih objava redom iz CMS-a.

@@ -22,5 +22,9 @@
   {
     "slika": "/images/japan.jpg",
     "aktivna": true
+  },
+  {
+    "slika": "/images/advent_london.jpg",
+    "aktivna": true
   }
 ]
